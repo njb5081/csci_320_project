@@ -59,46 +59,12 @@ public class SalesPersonTable {
     /**
      * Imports SalesPerson data to the database from a given CSV file
      * @param conn      The connection to the database
-     * @param filename  The CSV file to read in
      * @throws SQLException
      */
     public static void importFromCSV(Connection conn, String filename)
             throws SQLException {
-        StringBuilder sb = new StringBuilder();
-        sb.append("INSERT INTO salesperson (SALESPERSON_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, DEALER_ID) VALUES");
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
-            String line;
-            int id, dealer;
-            String first, last, phone, email;
-            // hacky formatting solution
-            boolean firstLine = true;
-            while((line = br.readLine()) != null){
-                if(firstLine){
-                    firstLine = false;
-                } else{
-                    sb.append(",");
-                }
-                String[] split = line.split(",");
-                id = Integer.parseInt(split[0]);
-                first = split[1];
-                last = split[2];
-                phone = split[3];
-                email = split[4];
-                dealer = Integer.parseInt(split[5]);
-                sb.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',%d)",
-                        id, first, last, phone, email, dealer));
-
-            }
-            sb.append(";");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NumberFormatException e) {
-            System.err.println("Invalid data in CSV file, aborting import.");
-            e.printStackTrace();
-        }
-
-        String sql = sb.toString();
+        String sql = "INSERT INTO salesperson(SALESPERSON_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, DEALER_ID)"
+                        + "SELECT * FROM CSVREAD(\'" + filename + "\')";
         Statement stmt = conn.createStatement();
         stmt.execute(sql);
 
@@ -115,7 +81,7 @@ public class SalesPersonTable {
      * @param dealer    A specific dealership ID, -1 otherwise
      * @return          A string representing the result of the query.
      */
-    public String getSalesPerson(Connection conn, int id, String first, String last, String phone, String email, int dealer){
+    public static String getSalesPerson(Connection conn, int id, String first, String last, String phone, String email, int dealer){
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM salesperson WHERE ");
         ArrayList<String> whereClauses = new ArrayList<>();
