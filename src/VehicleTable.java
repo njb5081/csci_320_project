@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 /**
  * Created by Nicholas on 3/19/2018.
@@ -41,6 +42,52 @@ public class VehicleTable extends Main {
      * @param String csvFilePath
      */
     public static void importFromCsv(Connection conn, String csvFilePath) {
-        // TODO write this method
+        String query = "INSERT INTO Vehicle(VIN, brand, model, color, engine, transmission, mpg, dealerID, " +
+                "dateSoldToDealer,manufacturer) SELECT * FROM CSVREAD('" + csvFilePath + "');";
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Insert a new Vehicle.
+     *
+     * @param Connection conn
+     * @param String VIN
+     * @param String brand
+     * @param String model
+     * @param String color
+     * @param int engine
+     * @param String transmission
+     * @param int mpg
+     * @param int dealerID
+     * @param String dateSoldToDealer
+     * @param String manufacturer
+     */
+    public static void insertVehicle(Connection conn,
+                                     String VIN,
+                                     String brand,
+                                     String model,
+                                     String color,
+                                     int engine,
+                                     String transmission,
+                                     int mpg,
+                                     int dealerID,
+                                     String dateSoldToDealer,
+                                     String manufacturer) {
+        String query = String.format("INSERT INTO Vehicle "
+                        + "VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%d\',\'%s\',\'%d\',\'%d\',\'%s\',\'%s\')",
+                VIN, brand, model, color, engine, transmission, mpg, dealerID, dateSoldToDealer, manufacturer);
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

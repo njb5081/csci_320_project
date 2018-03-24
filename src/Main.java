@@ -87,5 +87,18 @@ public class Main {
             //TODO fix the catch all exception case
             e.printStackTrace();
         }
+
+        // Delete entire DB on program exit ~ to start fresh next time
+        // Not sure if this is needed or not
+        String deleteQuery = "DROP ALL OBJECTS;";
+
+        try {
+            Statement stmt = main.conn.createStatement();
+            stmt.execute(deleteQuery);
+            main.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
