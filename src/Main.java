@@ -76,8 +76,11 @@ public class Main {
 
         try{
             System.out.println("Test");
-            CustomerTable.createPersonTable(main.getConnection());
             // TODO This is where we create the tables
+            CustomerTable.createPersonTable(main.getConnection());
+            VehicleTable.createVehicleTable(main.getConnection());
+            // TODO This is where we can seed the tables
+            VehicleTable.importFromCsv(main.getConnection(), "data/Vehicle.csv");
             // TODO This is probably where we should scan
         }
         catch (Exception e){
