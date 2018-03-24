@@ -15,7 +15,6 @@ public class SalesPersonTable {
 
     /**
      * Creates the Salesperson table, if it does not already exist.
-     * TODO verify dealer ID foreign key
      */
     public static void createSalesPersonTable(Connection conn){
         try {
@@ -64,7 +63,7 @@ public class SalesPersonTable {
     public static void importFromCSV(Connection conn, String filename)
             throws SQLException {
         String sql = "INSERT INTO salesperson(SALESPERSON_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, DEALER_ID)"
-                        + "SELECT * FROM CSVREAD(\'" + filename + "\')";
+                        + "SELECT * FROM CSVREAD('" + filename + "')";
         Statement stmt = conn.createStatement();
         stmt.execute(sql);
 
