@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -24,20 +25,44 @@ public class VehicleSoldTable {
         }
     }
 
-    public void importFromCSV(String file){
-
+    public static void importFromCSV(Connection conn, String file) throws SQLException{
+        String sql = "INSERT INTO vehicle_sold(SALE_ID, VIN)"
+                + "SELECT * FROM CSVREAD('" + file + "')";
+        Statement stmt = conn.createStatement();
+        stmt.execute(sql);
     }
 
-    public String getVehicleSoldRecord(int sale_id){
+    public static String getVehicleSoldRecord(Connection conn, int sale_id){
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM vehicle_sold");
+        if (sale_id != -1) sb.append(String.format("WHERE SALE_ID = %d", sale_id));
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet resultSet = stmt.executeQuery(sb.toString());
+            StringBuilder result = new StringBuilder();
+            while(resultSet.next()){
+                result.append(String.format("VehicleSold: %d %s\n",
+                        resultSet.getInt(1),
+                        resultSet.getString(2)));
+            }
+            return result.toString();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         return "";
     }
 
-    public int insertVehicleSoldRecord(String vin){
-        return 0;
+    public static void insertVehicleSoldRecord(Connection conn, int sale_id, String vin){
+        String query = String.format("INSERT INTO salesperson VALUES(%d,\'%s\')",
+                                                                    sale_id, vin);
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(query);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
-    public int updateVehicleSoldRecord(int sale_id){
-        return 0;
-    }
 
 }
