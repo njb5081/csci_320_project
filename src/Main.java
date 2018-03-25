@@ -135,12 +135,35 @@ public class Main {
                     conn,
                     "src/customer.csv");
           **/
+
+
             // TODO This is where we create the tables
+            CustomerTable.createCustomerTable(conn);
+            VehicleTable.createVehicleTable(conn);
+            // TODO This is where we can seed the tables
+            VehicleTable.importFromCsv(conn, "data/Vehicle.csv");
             // TODO This is probably where we should scan
         } catch (Exception e) {
             //TODO fix the catch all exception case
             e.printStackTrace();
         }
+
+        /**
+        // Delete entire DB on program exit ~ to start fresh next time
+        // Not sure if this is needed or not
+         //Do think we need this yet
+        String deleteQuery = "DROP ALL OBJECTS;";
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(deleteQuery);
+            Main main = new Main();
+            main.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+         **/
+
     }
     public static ResultSet adminSQL(Connection conn, Scanner scanner){
         System.out.print("Enter your SQL query: ");
