@@ -1,0 +1,151 @@
+customer_id,first_name,last_name,address,city,state,zip,phone,gender,income,salesPersonID
+1,Stephen,Yosifov,1723 Springs Park,Pittsburgh,PA,31154,-120-9292,M,6702339,19
+2,Ruperta,McDonagh,637 Bobwhite Plaza,Akron,OH,63641,330-396-5495,F,5638446,23
+3,Vassili,Ryde,2056 Westridge Pass,Toledo,OH,18286,419-188-5280,M,8144644,6
+4,Antoine,Louden,8 Debs Lane,Pueblo,CO,70688,719-608-4405,M,9350797,21
+5,Luciano,Feltoe,16279 Brentwood Pass,Tuscaloosa,AL,15441,205-812-6422,M,6358970,4
+6,Tally,Wyse,597 Monument Place,Chicago,IL,68856,773-543-0631,F,751666,62
+7,Odella,Stoltz,1 Dawn Court,Des Moines,IA,54636,515-463-5103,F,5297405,81
+8,Sly,Greenall,850 Bartillon Park,Orlando,FL,45348,407-970-7520,M,6387740,97
+9,Kermit,Anstey,053 Saint Paul Road,Garden Grove,CA,60572,714-724-8248,M,679381,45
+10,Oneida,Hamblington,012 Killdeer Plaza,Corpus Christi,TX,31386,361-241-7367,F,9575730,42
+11,Jeromy,Koopman,8 Maple Drive,Cedar Rapids,IA,36354,319-994-6370,M,504273,41
+12,Bearnard,Ingerfield,8873 Boyd Street,Charleston,WV,98584,304-831-4284,M,3760736,64
+13,Aliza,Hazelgreave,1 Sage Trail,Naperville,IL,46163,630-434-7424,F,3895293,57
+14,Judi,Cadd,02632 Melby Point,Philadelphia,PA,31911,215-914-6141,F,388893,34
+15,Fidelity,Oganesian,361 Hayes Park,Van Nuys,CA,13242,213-679-6927,F,2747951,13
+16,Stephi,Goatman,66120 Independence Trail,Reston,VA,51194,703-291-4708,F,3447280,96
+17,Jamey,Everist,8 Union Lane,Jackson,MS,45909,601-287-9492,M,3568313,73
+18,Haydon,Rotge,07 Talmadge Lane,Amarillo,TX,93620,806-214-3551,M,7891333,78
+19,Helene,Jordeson,09742 Stone Corner Way,Reno,NV,34118,775-119-7288,F,5591839,10
+20,Payton,Fortnon,2 Myrtle Street,Washington,DC,69372,202-540-6543,M,2907873,4
+21,Chrissie,MacIan,11 Pennsylvania Avenue,Jacksonville,FL,63641,904-860-4830,M,3492900,37
+22,Lawry,Backs,8 Bashford Pass,Pomona,CA,20986,909-116-0770,M,3471543,50
+23,Shadow,Bullin,55 Hintze Court,Washington,DC,49130,202-722-9959,M,1884606,94
+24,Towny,Gantzman,836 Mallory Circle,Evanston,IL,32965,847-198-2182,M,7033652,14
+25,Marcela,McElmurray,03209 Lakewood Parkway,Seattle,WA,12660,425-847-1031,F,2275387,17
+26,Torry,Cheeseman,91289 Bay Trail,Lansing,MI,24301,517-839-7271,M,5025090,69
+27,Wayne,Sowte,59 Namekagon Plaza,Englewood,CO,52349,303-575-4854,M,1602011,42
+28,Lind,Cleary,5 Holmberg Point,San Diego,CA,56744,619-756-3958,M,1419793,40
+29,Maryl,Whatley,371 Golf Trail,San Antonio,TX,17090,210-847-7655,F,7420017,43
+30,Vinny,Syers,70 South Street,Flushing,NY,21606,718-920-2404,M,160036,92
+31,Teador,Shoveller,22 Helena Junction,Peoria,IL,40457,309-203-8904,M,9546438,92
+32,Garreth,Momford,3 Chive Terrace,Charlotte,NC,56202,704-698-7079,M,5267778,29
+33,Carolann,Crockatt,49 Manitowish Drive,Tampa,FL,44029,813-708-7655,F,7734700,86
+34,Aylmer,Sumpter,99 Utah Street,Sacramento,CA,11980,916-644-1646,M,6454996,82
+35,Lisabeth,Osmar,1384 Armistice Place,Houston,TX,60305,832-622-5984,F,204628,35
+36,Ruperto,Godfrey,12 Acker Lane,Pocatello,ID,27150,208-869-0458,M,230596,100
+37,Tami,Strickler,2078 5th Hill,Sioux Falls,SD,94092,605-676-5527,F,6588277,39
+38,Thorny,Le Count,6203 Quincy Avenue,Charlotte,NC,18471,704-146-2543,M,9732874,46
+39,Alice,Raynes,61351 Annamark Circle,Santa Monica,CA,31264,310-682-9453,F,786402,1
+40,Farrell,Spradbery,57 Blue Bill Park Trail,Lancaster,CA,49061,661-841-5973,M,1550485,16
+41,Casi,Jurs,574 Iowa Trail,Topeka,KS,71134,785-915-1937,F,1007476,9
+42,Asher,Di Frisco,4017 La Follette Junction,Richmond,VA,80037,804-495-2073,M,6883666,58
+43,Janean,Matsell,68 Monterey Road,Fort Worth,TX,62194,817-582-6563,F,8174781,66
+44,Moira,Rodda,74249 Tennessee Court,Pasadena,CA,26672,626-897-7858,F,8559329,92
+45,Pernell,Tessington,5 Westport Trail,Sarasota,FL,60040,941-308-4959,M,9429177,8
+46,Corrie,Tours,1220 Caliangt Drive,Provo,UT,82027,801-175-2510,M,6532639,1
+47,Elle,McClaurie,185 Moland Court,Dallas,TX,93676,469-805-5320,F,2206867,17
+48,Sylvester,Shulver,82 Independence Avenue,Providence,RI,40717,401-560-2884,M,436632,76
+49,Aloise,Norsworthy,3 Hollow Ridge Center,San Francisco,CA,80391,858-724-6063,F,1610744,15
+50,Thaxter,Iskowitz,97 Grim Road,Oklahoma City,OK,86322,405-588-1147,M,9946382,32
+51,Susanne,Larn,4002 Erie Avenue,Denver,CO,22065,720-525-0763,F,6001304,5
+52,Harald,Brettel,1 Eagan Drive,Schenectady,NY,66189,518-363-7729,M,4510239,9
+53,Benjie,Dimelow,0816 Aberg Parkway,Bloomington,IN,39746,812-958-9488,M,4517029,3
+54,Adelaide,Hancox,2 Coleman Parkway,Odessa,TX,88125,432-547-0850,F,2687566,2
+55,Rhea,Lawly,695 Graceland Place,Galveston,TX,13596,409-375-6215,F,5605734,27
+56,Steffi,Kurtis,6 School Junction,Carol Stream,IL,57350,309-208-4478,F,4698805,60
+57,Madeline,Beak,4 Redwing Place,Clearwater,FL,69014,813-773-3493,F,9817923,29
+58,Caro,Rentcome,759 Fairfield Court,Glendale,AZ,94703,602-239-3814,F,8450041,53
+59,Shae,Glauber,30119 Village Court,Raleigh,NC,59044,919-321-1083,F,3373127,89
+60,Maurita,Bertelmot,23 Pennsylvania Street,El Paso,TX,81037,915-173-3940,F,2228746,43
+61,Lucas,Madgewick,7984 Lerdahl Junction,Florence,SC,53779,843-575-6791,M,9430419,35
+62,Neddy,Libbey,6 Larry Avenue,Marietta,GA,71703,404-464-1642,M,5404043,23
+63,Mohandis,Fuente,10 Mcguire Parkway,Washington,DC,64921,202-832-5288,M,1586643,100
+64,Terri,Snoden,71 Mifflin Drive,San Antonio,TX,97622,210-140-5703,M,5438982,4
+65,Niel,Gomez,7 Lawn Lane,Rochester,MN,46453,507-769-6387,M,8192764,62
+66,Alethea,Stryde,18853 Ronald Regan Plaza,Charlotte,NC,37755,704-363-3700,F,6553480,25
+67,Dannel,Rivitt,2159 Fallview Road,Charleston,WV,49457,304-847-4866,M,4476274,12
+68,Udell,Thompson,50 Glendale Alley,North Las Vegas,NV,19375,702-940-5742,M,3857269,62
+69,Fara,Mewitt,17 Prairie Rose Lane,Athens,GA,95912,706-781-1177,F,223811,7
+70,Cori,Strowther,54 Northwestern Lane,Albuquerque,NM,42000,505-912-0453,M,7404564,69
+71,Mikael,Simmons,84 Quincy Way,Bakersfield,CA,42552,661-865-0728,M,7883735,36
+72,Roxanne,McLarens,0 Schurz Pass,Saint Louis,MO,39128,314-410-6651,F,4574261,60
+73,Leland,Purvess,9 Dahle Avenue,Columbia,SC,38183,803-711-2772,F,7575116,86
+74,Franny,Yanyshev,469 1st Court,Tyler,TX,82612,903-234-4877,M,4341451,34
+75,Gillie,Woodland,9 Clarendon Pass,Fort Worth,TX,43033,682-253-9554,F,3348245,1
+76,Abigael,Maplesden,8898 Manufacturers Place,Oklahoma City,OK,50943,405-302-2982,F,6753107,9
+77,Alexei,Thor,82 Waxwing Road,Louisville,KY,66834,502-590-2377,M,3148548,59
+78,Denise,Dahlman,347 Bunker Hill Center,Topeka,KS,67350,785-805-3868,F,5402690,68
+79,Celina,Hilldrop,8 Oak Valley Place,Canton,OH,55684,330-666-5723,F,8362843,33
+80,Dicky,Garralts,16 Heath Park,Asheville,NC,14721,828-131-2206,M,3748733,27
+81,Shara,Frankiewicz,0711 Larry Pass,Albuquerque,NM,99597,505-147-0157,F,4675074,8
+82,Gavrielle,Normabell,0461 Portage Circle,Mobile,AL,50932,251-513-5621,F,3553011,19
+83,Petronille,Ungerecht,0 Jenna Point,Metairie,LA,14808,504-385-9930,F,4495730,11
+84,Guthry,Conford,51 Maple Way,Milwaukee,WI,38071,414-499-9654,M,7002645,8
+85,Bernardina,Myrtle,9897 Ruskin Trail,Baltimore,MD,60410,443-766-5120,F,8360367,39
+86,Valene,Blakiston,1 Shopko Lane,Reading,PA,58432,610-226-7535,F,7433058,86
+87,Mordecai,Thornewill,82 Fulton Lane,Miami,FL,87793,786-773-7250,M,5880059,85
+88,Cedric,Tinkham,8 Mifflin Pass,Daytona Beach,FL,38559,407-211-6950,M,7478615,29
+89,Leta,Forrestill,948 Parkside Junction,Arlington,VA,63100,703-939-5174,F,9372120,26
+90,Lyndell,Fenwick,29230 Stephen Parkway,Apache Junction,AZ,59434,480-612-0774,F,3438914,96
+91,Benoite,Marjoram,138 North Plaza,Fort Pierce,FL,60109,772-486-7608,F,9640154,45
+92,Harlan,Edgars,188 Talisman Alley,Oklahoma City,OK,90828,405-935-5735,M,8485182,10
+93,Phineas,Crabb,0722 Barnett Crossing,Montgomery,AL,63311,334-930-6047,M,8284697,83
+94,Damaris,Lisciardelli,07 Crownhardt Point,Tulsa,OK,34469,918-955-3887,F,5824079,26
+95,Shaun,Creamen,42667 Colorado Pass,Tacoma,WA,34638,253-965-8712,F,1484462,4
+96,Neille,Simonaitis,37886 Ruskin Avenue,Eugene,OR,51624,541-265-7481,F,6433735,7
+97,Barbaraanne,Joberne,9884 Upham Circle,El Paso,TX,24157,915-480-0221,F,1606730,50
+98,Kellby,Burgum,0 Mockingbird Terrace,Aurora,CO,38550,303-404-3527,M,1200041,66
+99,Marylin,Simmers,800 Lakeland Junction,Philadelphia,PA,85771,267-667-3529,F,7702699,58
+100,Tatiania,Ackrill,98 Bay Circle,Moreno Valley,CA,71946,951-348-8684,F,8655939,64
+101,Dory,Capon,68 Walton Crossing,Flint,MI,61567,810-770-1133,F,6462196,83
+102,Ado,Rozanski,92 Independence Lane,Jacksonville,FL,33968,904-859-4892,M,9259835,33
+103,Donaugh,Clewlow,12838 Hintze Street,El Paso,TX,44070,915-662-4584,M,5996572,13
+104,Daryl,Lucius,3 Lyons Pass,Richmond,VA,81041,804-128-2830,F,9416676,76
+105,Pearle,Bonett,12245 Michigan Alley,Nashville,TN,94616,615-674-5217,F,6771549,95
+106,Belicia,Gabbett,9 Corscot Point,New York City,NY,23304,646-323-4038,F,5083918,53
+107,Hugues,Clemmens,6 Stoughton Place,Harrisburg,PA,36879,717-474-3687,M,7767209,21
+108,Hanny,Dockery,486 Cambridge Road,Fort Myers,FL,94061,239-304-4745,F,570505,35
+109,Jenifer,Rainer,1379 Warner Junction,Wilmington,DE,67352,302-193-4499,F,3531911,76
+110,Bertrand,Jowling,2 Dayton Pass,Birmingham,AL,47857,205-450-0343,M,4568422,74
+111,Ricki,Busse,10038 Sugar Circle,Baton Rouge,LA,67454,225-396-7126,F,3467133,60
+112,Armand,Baseggio,94 Sauthoff Park,Boise,ID,18839,208-589-8723,M,8101561,55
+113,Claudina,Fisher,41 Raven Park,Odessa,TX,40821,432-717-0024,F,1384980,56
+114,Gorden,Olczak,74 Holy Cross Crossing,Edmond,OK,64099,405-685-6510,M,4958689,19
+115,Tracy,Akess,42197 Portage Place,Van Nuys,CA,79942,213-799-1531,M,1720895,35
+116,Cassie,Power,6 Barnett Pass,Charleston,SC,41798,843-448-8042,M,404243,84
+117,Val,Duffil,722 Fairfield Junction,Syracuse,NY,84597,315-437-0156,M,2722691,88
+118,Beret,Twinbourne,8605 Aberg Plaza,Nashville,TN,94908,615-982-1160,F,3345838,87
+119,Alidia,MacDiarmond,8 Forster Pass,Port Saint Lucie,FL,47342,772-554-2478,F,1313501,42
+120,Arne,Baldazzi,1 Jay Crossing,Erie,PA,19284,814-528-0549,M,9575346,5
+121,Hashim,Emmer,6484 Acker Trail,Montgomery,AL,83035,334-868-8192,M,8190901,26
+122,Merrel,Treat,9879 Fremont Junction,Allentown,PA,20177,610-388-1223,M,7021042,85
+123,Englebert,Satterlee,3186 Thackeray Trail,Albany,GA,12336,229-435-6315,M,3962567,18
+124,Hillary,Standbrook,0 Schlimgen Pass,Stamford,CT,72036,203-785-2682,M,5863578,74
+125,Nelie,Sibbs,0969 Pearson Lane,Omaha,NE,77130,402-873-2167,F,7366978,13
+126,Almeta,Borrill,4 Service Parkway,Rochester,MN,39937,507-364-8072,F,9230498,94
+127,Marcello,Karpov,3392 Starling Court,Tampa,FL,50793,813-960-2335,M,6680099,11
+128,John,Giovanardi,229 Hayes Road,Wilmington,NC,96595,910-506-3872,M,9567719,92
+129,Geno,Morten,58 Magdeline Alley,Bethesda,MD,85825,240-809-3776,M,6472655,55
+130,Bond,Longworth,383 Carpenter Plaza,Davenport,IA,42060,563-514-4169,M,3087305,26
+131,Brenden,Della Scala,7710 Talisman Center,Orange,CA,84739,760-418-4586,M,788113,18
+132,Ofelia,Druhan,79607 Johnson Terrace,Abilene,TX,54975,325-955-6875,F,324121,47
+133,Paulina,Grenshiels,6 Stoughton Place,Seattle,WA,86784,206-757-2229,F,9752417,82
+134,Nettle,Cuttler,50108 Crescent Oaks Parkway,Atlanta,GA,20499,404-186-0595,F,2543113,72
+135,Theadora,Skoggins,88460 Bayside Park,San Mateo,CA,14302,805-170-9353,F,7763098,12
+136,Karla,Trayton,6 Montana Center,Harrisburg,PA,83006,717-180-7901,F,2020381,40
+137,Sinclair,Halloway,29557 Eggendart Parkway,Grand Rapids,MI,20501,616-181-8990,M,8306757,20
+138,Jacquie,de Copeman,43089 Hansons Circle,Littleton,CO,67884,720-331-3084,F,1536995,91
+139,Casey,Kubacek,8 Gina Hill,New York City,NY,49197,917-488-3042,F,7692532,75
+140,Martin,Edmondson,1 Larry Avenue,San Antonio,TX,62022,210-170-6636,M,1306000,50
+141,Tiphani,Clift,751 Trailsway Alley,Dallas,TX,77757,214-254-4355,F,4520967,34
+142,Forester,Squibe,51 Hauk Junction,Pittsburgh,PA,96026,412-979-1973,M,5746694,61
+143,Nealy,Basilio,29824 Morrow Parkway,San Jose,CA,39556,408-512-3769,M,1549414,48
+144,Jacquenetta,Rainsden,37 American Lane,Cedar Rapids,IA,58713,319-260-2411,F,4763982,1
+145,Andee,Cooper,7763 Mockingbird Terrace,Harrisburg,PA,52890,717-170-6840,F,5045918,94
+146,Jamaal,Manton,45 Dexter Place,Atlanta,GA,75670,404-970-7960,M,2579230,94
+147,Puff,Marrion,5226 Delladonna Crossing,Boise,ID,30805,208-413-5717,M,7225925,74
+148,Barr,MacInnes,92026 Canary Street,Honolulu,HI,40357,808-123-3499,M,4455914,76
+149,Scarface,Lampard,9 Erie Center,Saint Louis,MO,16584,314-716-8733,M,1943793,18
+150,Henrietta,Grabeham,91 Carberry Way,Albany,NY,54296,518-485-0164,F,386850,56
