@@ -129,19 +129,13 @@ public class Main {
 
     public static void init(Connection conn) {
         try {
-            CustomerTable.createCustomerTable(conn);
-            CustomerTable.deleteAll(conn);
-         /**   CustomerTable.populateFromCSV(
-                    conn,
-                    "src/customer.csv");
-          **/
-
-
             // TODO This is where we create the tables
             CustomerTable.createCustomerTable(conn);
             VehicleTable.createVehicleTable(conn);
             // TODO This is where we can seed the tables
+            CustomerTable.populateFromCSV(conn, "data/customer.csv");
             VehicleTable.importFromCsv(conn, "data/Vehicle.csv");
+
             // TODO This is probably where we should scan
         } catch (Exception e) {
             //TODO fix the catch all exception case

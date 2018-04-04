@@ -42,7 +42,7 @@ public class VehicleTable extends Main {
      * @param String csvFilePath
      */
     public static void importFromCsv(Connection conn, String csvFilePath) {
-        String query = "INSERT INTO Vehicle(VIN, brand, model, color, engine, transmission, mpg, dealerID, " +
+        String query = "Merge INTO Vehicle(VIN, brand, model, color, engine, transmission, mpg, dealerID, " +
                 "dateSoldToDealer,manufacturer) SELECT * FROM CSVREAD('" + csvFilePath + "');";
 
         try {

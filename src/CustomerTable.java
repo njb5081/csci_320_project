@@ -33,7 +33,6 @@ public class CustomerTable {
             /**
              * Create a query and execute
              */
-            query += "as SELECT * FROM CSVREAD('src/customer.csv')";
             Statement stmt = conn.createStatement();
             System.out.println(query);
             stmt.execute(query);
@@ -44,47 +43,13 @@ public class CustomerTable {
     }
 
     public static void populateFromCSV(Connection conn,
-                                       String fileName) throws SQLException{
+                                       String csvFilePath) throws SQLException{
 
-        ArrayList<String[]> lines = new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            String line;
-            br.readLine();   // need to get rid of the headers
-
-            while ((line = br.readLine()) != null){
-                String[] split = line.split(",");
-                lines.add(split);
-            }
-            br.close();
-        } catch (IOException e){
-            System.out.println("Warning! There was a problem reading in the CSV " +
-                    "for populating the Customer table, ensure it is correct and try again");
-        }
-
-        String sql = "INSERT INTO Customer VALUES";
-
-        //for (String[] row : lines){
-        for (int i=1; i<2; i++){
-            String[] row = lines.get(i);
-            String append = String.format("(%d, \'%s\', \'%s\', \'%s\', \'%s\',\'%s\', %d, \'%s\',\'%s\',%d, %d),",
-                    Integer.parseInt(row[0]), row[1], row[2], row[3], row[4], row[5], Integer.parseInt(row[6]),
-                    row[7], row[8], Integer.parseInt(row[9]), Integer.parseInt(row[10]));
-            sql += append;
-        }
-
-        int last_comma = sql.lastIndexOf(",");
-        StringBuilder insert = new StringBuilder(sql);
-
-        insert.setCharAt(last_comma, ';');
-
-
-        System.out.println(insert.toString());
-
+        String insert = "MERGE INTO Customer select * from CSVREAD('" + csvFilePath + "');";
         try{
-            sql = insert.toString();
+
             Statement stmt = conn.createStatement();
-            stmt.execute(sql);
+            stmt.execute(insert);
         } catch (SQLException e){
             e.printStackTrace();
             System.out.println("There was a problem populating the Customer table\n" +
