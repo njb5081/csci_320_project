@@ -3,6 +3,7 @@
  */
 
 import com.sun.org.apache.xpath.internal.SourceTree;
+import sun.security.krb5.SCDynamicStoreConfig;
 
 import java.sql.*;
 import java.util.*;
@@ -65,18 +66,40 @@ public class Main {
     public static void main(String[] args) {
         Main main = new Main();
 
-        HashMap<Integer, String> vehicle_locator = new HashMap<>();
-        vehicle_locator.put(1, "VIN");
-        vehicle_locator.put(2, "BRAND");
-        vehicle_locator.put(3, "MODEL");
-        vehicle_locator.put(4, "COLOR");
-        vehicle_locator.put(5, "ENGINE");
-        vehicle_locator.put(6, "TRANSMISSION");
-        vehicle_locator.put(7, "MANUFACTURER");
-        vehicle_locator.put(8, "ZIPCODE");
-        vehicle_locator.put(9, "NAME");
-        vehicle_locator.put(10, "CITY");
+        HashMap<Integer, String> vehicleLocator = new HashMap<>();
+        vehicleLocator.put(1, "VIN");
+        vehicleLocator.put(2, "BRAND");
+        vehicleLocator.put(3, "MODEL");
+        vehicleLocator.put(4, "COLOR");
+        vehicleLocator.put(5, "ENGINE");
+        vehicleLocator.put(6, "TRANSMISSION");
+        vehicleLocator.put(7, "MANUFACTURER");
+        vehicleLocator.put(8, "ZIPCODE");
+        vehicleLocator.put(9, "NAME");
+        vehicleLocator.put(10, "CITY");
 
+        HashMap<Integer, String> dealerAttributes = new HashMap<>();
+        dealerAttributes.put(1, "DEALERID");    //Todo check if this is DealerID or ID in table
+        dealerAttributes.put(2, "NAME");
+        dealerAttributes.put(3, "ADDRESS");
+        dealerAttributes.put(4, "CITY");
+        dealerAttributes.put(5, "STATE");
+        dealerAttributes.put(6, "ZIP");
+
+        HashMap<Integer, String> salesReportAttributes = new HashMap<>();
+        salesReportAttributes.put(1, "BRAND");
+        salesReportAttributes.put(2, "MODEL");
+        salesReportAttributes.put(3, "COLOR");
+        salesReportAttributes.put(4, "ENGINE");
+        salesReportAttributes.put(5, "TRANSMISSION");
+        salesReportAttributes.put(6, "MANUFACTURER");
+        salesReportAttributes.put(7, "NAME");
+        salesReportAttributes.put(8, "ADDRESS");
+        salesReportAttributes.put(9, "CITY");
+        salesReportAttributes.put(10, "STATE");
+        salesReportAttributes.put(11, "ZIP");
+        salesReportAttributes.put(12, "STARTDATE"); //TODO RENAME TO ACTUAL COLUMN NAME
+        salesReportAttributes.put(13, "ENDDATE"); //TODO RENAME TO ACTUAL COLUMN NAME
 
 
         //location of the database
@@ -109,13 +132,10 @@ public class Main {
                 adminSQL(conn, scanner);
             }
             else if (system == 2){
-                vehicleLocatorFunction(conn, vehicle_locator, scanner);
-
-
-
+                vehicleLocatorFunction(conn, vehicleLocator, scanner);
             }
             else if (system == 3){
-
+                dealerLocator(conn, dealerAttributes, scanner);
             }
             else{
                 System.out.println("Sorry we do not recognise your choice. Please try again");
@@ -128,51 +148,55 @@ public class Main {
                     "\nPress 2 to search for a sales records" +
                     "\nEnter your selection here: ");
             int system = scanner.nextInt();
+            scanner.nextLine();
+            if (system == 1){
+                vehicleLocatorFunction(conn, vehicleLocator, scanner);
+            }
+            else if (system == 2){
+                salesReportLocator(conn, salesReportAttributes, scanner);
+            }
+            else {
+                System.out.println("Sorry we do not recognize your choice, please try again");
+            }
 
         }
         else if (role == 3){
             System.out.println("Hello Customer! Please select one of the options below");
             System.out.print("Press 1 to search for dealerships" +
                     "\nPress 2 to search for a vehicle" +
-                    "\nEnter your selection here");
+                    "\nEnter your selection here: ");
             int system = scanner.nextInt();
-
+            scanner.nextLine();
+            if (system == 1){
+                dealerLocator(conn, dealerAttributes, scanner);
+            }
+            else if (system == 2){
+                vehicleLocatorFunction(conn, vehicleLocator, scanner);
+            }
+            else {
+                System.out.println("Sorry we don't recognize that selection, please try again");
+            }
         }
         else{
             System.out.println("Sorry, we do not recognize your choice, please select a role from above");
         }
-
     }
+
 
     public static void vehicleLocatorFunction(Connection conn, HashMap<Integer, String> searchParams, Scanner scanner) {
 
         System.out.println("\n\nWelcome to the Vehicle locator");
-        for (Map.Entry<Integer, String> entry : searchParams.entrySet()) {
-            System.out.println("Press " + Integer.toString(entry.getKey()) +
-                    " to search using a " + entry.getValue());
-        }
-        ArrayList<String> tableCols = new ArrayList<>();
-        ArrayList<String> whereClauses = new ArrayList<>();
-        Boolean continueSelection = Boolean.TRUE;
+        showSelection(conn, searchParams, scanner);
+    }
 
-        while (continueSelection){
-            System.out.print("Enter your selection here or press ` (grave marker) to begin the search: ");
-            String userChoice = scanner.nextLine();
-            if (userChoice.equals("`")){
-                continueSelection = false;
-                System.out.println(tableCols);
-                System.out.println(whereClauses);
-                break;
-                //TODO call vehicle search function in vehicle table here
-            }
-            else{
-                userChoice = searchParams.get(Integer.parseInt(userChoice));
-            }
-            tableCols.add(userChoice);
-            System.out.print("Enter your parameter for " + userChoice + " here: ");
-            String whereParam = scanner.nextLine();
-            whereClauses.add(whereParam);
-        }
+    public static void dealerLocator(Connection conn, HashMap<Integer, String> dealerAttributes, Scanner scanner){
+        System.out.println("Welcome to the Dealer Locator Service");
+        showSelection(conn, dealerAttributes, scanner);
+    }
+
+    public static void salesReportLocator(Connection conn, HashMap<Integer, String> reportAttibutes, Scanner scanner){
+        System.out.println("Welcome to the sales history search");
+        showSelection(conn, reportAttibutes, scanner);
     }
 
     public static void init(Connection conn) {
@@ -225,5 +249,33 @@ public class Main {
                     "\n here's what we saw:" + e.getMessage());
         }
         return null;
+    }
+
+    public static void showSelection(Connection conn, HashMap<Integer, String> paramDict, Scanner scanner){
+        for (Map.Entry<Integer, String> entry : paramDict.entrySet()) {
+            System.out.println("Press " + Integer.toString(entry.getKey()) +
+                    " to search using a " + entry.getValue());
+        }
+        ArrayList<String> tableCols = new ArrayList<>();
+        ArrayList<String> whereClauses = new ArrayList<>();
+        Boolean continueSelection = true;
+
+        while (continueSelection) {
+            System.out.print("Enter your selection here or press ` (grave marker) to begin the search: ");
+            String userChoice = scanner.nextLine();
+            if (userChoice.equals("`")) {
+                continueSelection = false;
+                System.out.println(tableCols);
+                System.out.println(whereClauses);
+                break;
+                //TODO call vehicle search function in dealership table here
+            } else {
+                userChoice = paramDict.get(Integer.parseInt(userChoice));
+            }
+            tableCols.add(userChoice);
+            System.out.print("Enter your parameter for " + userChoice + " here: ");
+            String whereParam = scanner.nextLine();
+            whereClauses.add(whereParam);
+        }
     }
 }
