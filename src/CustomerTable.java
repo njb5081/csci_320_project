@@ -34,7 +34,6 @@ public class CustomerTable {
              * Create a query and execute
              */
             Statement stmt = conn.createStatement();
-            System.out.println(query);
             stmt.execute(query);
         } catch (SQLException e) {
             System.out.println("Customer Table Creation FAILED!\n Please contact your database administrator");

@@ -5,7 +5,7 @@
 import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Main {
@@ -65,6 +65,20 @@ public class Main {
     public static void main(String[] args) {
         Main main = new Main();
 
+        HashMap<Integer, String> vehicle_locator = new HashMap<>();
+        vehicle_locator.put(1, "VIN");
+        vehicle_locator.put(2, "BRAND");
+        vehicle_locator.put(3, "MODEL");
+        vehicle_locator.put(4, "COLOR");
+        vehicle_locator.put(5, "ENGINE");
+        vehicle_locator.put(6, "TRANSMISSION");
+        vehicle_locator.put(7, "MANUFACTURER");
+        vehicle_locator.put(8, "ZIPCODE");
+        vehicle_locator.put(9, "NAME");
+        vehicle_locator.put(10, "CITY");
+
+
+
         //location of the database
         String loc = "~/csci_320";
         String user = "user";
@@ -95,6 +109,9 @@ public class Main {
                 adminSQL(conn, scanner);
             }
             else if (system == 2){
+                vehicleLocatorFunction(conn, vehicle_locator, scanner);
+
+
 
             }
             else if (system == 3){
@@ -125,6 +142,37 @@ public class Main {
             System.out.println("Sorry, we do not recognize your choice, please select a role from above");
         }
 
+    }
+
+    public static void vehicleLocatorFunction(Connection conn, HashMap<Integer, String> searchParams, Scanner scanner) {
+
+        System.out.println("\n\nWelcome to the Vehicle locator");
+        for (Map.Entry<Integer, String> entry : searchParams.entrySet()) {
+            System.out.println("Press " + Integer.toString(entry.getKey()) +
+                    " to search using a " + entry.getValue());
+        }
+        ArrayList<String> tableCols = new ArrayList<>();
+        ArrayList<String> whereClauses = new ArrayList<>();
+        Boolean continueSelection = Boolean.TRUE;
+
+        while (continueSelection){
+            System.out.print("Enter your selection here or press ` (grave marker) to begin the search: ");
+            String userChoice = scanner.nextLine();
+            if (userChoice.equals("`")){
+                continueSelection = false;
+                System.out.println(tableCols);
+                System.out.println(whereClauses);
+                break;
+                //TODO call vehicle search function in vehicle table here
+            }
+            else{
+                userChoice = searchParams.get(Integer.parseInt(userChoice));
+            }
+            tableCols.add(userChoice);
+            System.out.print("Enter your parameter for " + userChoice + " here: ");
+            String whereParam = scanner.nextLine();
+            whereClauses.add(whereParam);
+        }
     }
 
     public static void init(Connection conn) {
