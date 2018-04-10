@@ -3,6 +3,7 @@
  */
 
 import com.sun.org.apache.xpath.internal.SourceTree;
+import com.sun.xml.internal.org.jvnet.fastinfoset.sax.FastInfosetReader;
 import sun.security.krb5.SCDynamicStoreConfig;
 
 import java.sql.*;
@@ -116,6 +117,7 @@ public class Main {
                 "\nPress 1 if you are a database admin" +
                 "\nPress 2 if you are a dealership" +
                 "\nPress 3 if you are a customer" +
+                "\n Press 4 to add entries to the database" +
                 "\nEnter your selection here: ");
         int role = scanner.nextInt();
 
@@ -175,6 +177,128 @@ public class Main {
             }
             else {
                 System.out.println("Sorry we don't recognize that selection, please try again");
+            }
+        }
+
+        else if (role == 4){
+            System.out.println("Press 1 to add a new customer" +
+                    "\nPress 2 to add a new vehicle" +
+                    "\nPress 3 to add a new dealership" +
+                    "\nPress 4 to add a new salesperson" +
+                    "\nPress 5 to add a new sale" +
+                    "\nPress 6 to add a new sales record");
+            int selection = scanner.nextInt();
+            scanner.nextLine();
+            if (selection == 1){
+                System.out.println("Enter first name");
+                String fname = scanner.nextLine();
+                System.out.println("Enter last name");
+                String lname = scanner.nextLine();
+                System.out.println("Enter street address");
+                String street = scanner.nextLine();
+                System.out.println("Enter city");
+                String city = scanner.nextLine();
+                System.out.println("Enter State (ex: NY, PA)");
+                String state = scanner.nextLine();
+                System.out.println("Enter zip code");
+                Integer zip = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter phone");
+                String phone = scanner.nextLine();
+                System.out.println("Enter gender (M/F)");
+                String gender = scanner.nextLine();
+                System.out.println("Enter income (Round to nearest dollar with no commas");
+                Integer income = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter Id of assigned salesperson");
+                Integer salespersonId = scanner.nextInt();
+                scanner.nextLine();
+                //Todo need to call create customer here
+
+
+            }
+            else if (selection == 2){
+                System.out.println("Enter vin");
+                String vin = scanner.nextLine();
+                System.out.println("Enter brand");
+                String brand = scanner.nextLine();
+                System.out.println("Enter model");
+                String model = scanner.nextLine();
+                System.out.println("Enter color");
+                String color = scanner.nextLine();
+                System.out.println("Enter engine");
+                String engine = scanner.nextLine();
+                System.out.println("Enter transmission");
+                String trans = scanner.nextLine();
+                System.out.println("Enter mpg");
+                Integer mpg = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter current dealership ID where vehicle is located or leave blank if already bought");
+                Integer dealerID = scanner.nextInt();
+                scanner.nextLine();
+                //Todo check date format
+                System.out.println("Enter date sold to dealer of assigned salesperson");
+                Integer date = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter manufacturer");
+                String manufact = scanner.nextLine();
+
+            }
+            else if (selection == 3){
+                System.out.println("Enter dealer name");
+                String name = scanner.nextLine();
+                System.out.println("Enter street address");
+                String street = scanner.nextLine();
+                System.out.println("Enter city");
+                String city = scanner.nextLine();
+                System.out.println("Enter State (ex: NY, PA)");
+                String state = scanner.nextLine();
+                System.out.println("Enter zip code");
+                Integer zip = scanner.nextInt();
+                scanner.nextLine();
+
+            }
+            else if (selection == 4){
+                System.out.println("Enter first name");
+                String fname = scanner.nextLine();
+                System.out.println("Enter last name");
+                String lname = scanner.nextLine();
+                System.out.println("Enter phone");
+                String phone = scanner.nextLine();
+                System.out.println("Enter email");
+                String email = scanner.nextLine();
+                System.out.println("Enter Id of assigned dealer");
+                Integer dealerId = scanner.nextInt();
+                scanner.nextLine();
+
+            }
+            else if (selection == 5){
+                System.out.println("Enter Id of assigned salesperson");
+                Integer salespersonId = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter Id of customer the vehicle was sold to");
+                Integer customerId = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter Id of dealer");
+                Integer dealerId = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter total sale price");
+                Integer total = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter date of sale");
+                Integer date = scanner.nextInt();
+                scanner.nextLine();
+
+
+
+            }
+            else if (selection == 6){
+                System.out.println("Enter Id of sale");
+                Integer saleId = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter vin");
+                String vin = scanner.nextLine();
+
             }
         }
         else{
