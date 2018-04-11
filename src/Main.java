@@ -330,7 +330,7 @@ public class Main {
             VehicleTable.createVehicleTable(conn);
             // TODO This is where we can seed the tables
             CustomerTable.populateFromCSV(conn, "data/customer.csv");
-            VehicleTable.importFromCsv(conn, "data/Vehicle.csv");
+            VehicleTable.importFromCsv(conn, "data/vehicle.csv");
 
             // TODO This is probably where we should scan
         } catch (Exception e) {
