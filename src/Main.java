@@ -15,6 +15,9 @@ public class Main {
     //The connection to the database
     private Connection conn;
 
+    private static ArrayList<String> tableCols = new ArrayList<>();
+    private static ArrayList<String> whereClauses = new ArrayList<>();
+
     /**
      * Create a database connection with the given params
      * @param location: path of where to place the database
@@ -311,6 +314,25 @@ public class Main {
 
         System.out.println("\n\nWelcome to the Vehicle locator");
         showSelection(conn, searchParams, scanner);
+
+        ResultSet results = VehicleTable.getVehicle(conn, tableCols, whereClauses);
+
+        if (results != null) {
+            try {
+                ResultSetMetaData rsmd = results.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (results.next()) {
+                    for (int i = 1; i <= columnCount; i++) {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = results.getString(i);
+                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                    }
+                    System.out.println("");
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void dealerLocator(Connection conn, HashMap<Integer, String> dealerAttributes, Scanner scanner){
@@ -337,24 +359,8 @@ public class Main {
             //TODO fix the catch all exception case
             e.printStackTrace();
         }
-
-        /**
-        // Delete entire DB on program exit ~ to start fresh next time
-        // Not sure if this is needed or not
-         //Do think we need this yet
-        String deleteQuery = "DROP ALL OBJECTS;";
-
-        try {
-            Statement stmt = conn.createStatement();
-            stmt.execute(deleteQuery);
-            Main main = new Main();
-            main.closeConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-         **/
-
     }
+
     public static ResultSet adminSQL(Connection conn, Scanner scanner){
         System.out.print("Enter your SQL query: ");
         String query = scanner.nextLine();
@@ -380,8 +386,8 @@ public class Main {
             System.out.println("Press " + Integer.toString(entry.getKey()) +
                     " to search using a " + entry.getValue());
         }
-        ArrayList<String> tableCols = new ArrayList<>();
-        ArrayList<String> whereClauses = new ArrayList<>();
+        tableCols = new ArrayList<>();
+        whereClauses = new ArrayList<>();
         Boolean continueSelection = true;
 
         while (continueSelection) {
@@ -399,27 +405,6 @@ public class Main {
             System.out.print("Enter your parameter for " + userChoice + " here: ");
             String whereParam = scanner.nextLine();
             whereClauses.add(whereParam);
-        }
-
-        // TODO check what method called showSelection()
-        // This code currently only works with Customer Vehicle Search
-        ResultSet results = VehicleTable.getVehicle(conn, tableCols, whereClauses);
-
-        if (results != null) {
-            try {
-                ResultSetMetaData rsmd = results.getMetaData();
-                int columnCount = rsmd.getColumnCount();
-                while (results.next()) {
-                    for (int i = 1; i <= columnCount; i++) {
-                        if (i > 1) System.out.print(",  ");
-                        String columnValue = results.getString(i);
-                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                    }
-                    System.out.println("");
-                }
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
         }
     }
 }
