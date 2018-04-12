@@ -7,12 +7,14 @@ import java.sql.Statement;
  * Created by Nicholas on 3/19/2018.
  * Modified by Chris Baudouin
  */
-public class VehicleSoldTable {
-    public static void createVehicleSoldTable(Connection conn){
+public class CustomerSoldTable {
+    public static void createCustomerSoldTable(Connection conn){
         try {
-            String query = "CREATE TABLE IF NOT EXISTS vehicle_sold("
+            String query = "CREATE TABLE IF NOT EXISTS customer_sold("
                     + "SALE_ID INT PRIMARY KEY,"
                     + "VIN VARCHAR(17),"
+                    + "TOTAL INT(6),"
+                    + "SALE_DATE VARCHAR(10)"
                     + ");" ;
 
             /**
@@ -26,10 +28,15 @@ public class VehicleSoldTable {
     }
 
     public static void importFromCSV(Connection conn, String file) throws SQLException{
-        String sql = "INSERT INTO vehicle_sold(SALE_ID, VIN)"
+        String sql = "INSERT INTO customer_sold(SALE_ID, VIN, TOTAL, SALE_DATE)"
                 + "SELECT * FROM CSVREAD('" + file + "')";
-        Statement stmt = conn.createStatement();
-        stmt.execute(sql);
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+        }catch (SQLException e){
+            System.out.println("There was a problem populating the customer sold table\n" +
+                    "Please contact your database administrator\n");
+        }
     }
 
     public static String getVehicleSoldRecord(Connection conn, int sale_id){

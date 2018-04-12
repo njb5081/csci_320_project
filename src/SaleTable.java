@@ -14,12 +14,13 @@ public class SaleTable {
         try {
             String query = "CREATE TABLE IF NOT EXISTS sale("
                     + "SALE_ID INT PRIMARY KEY,"
-                    + "SALEPERSON_ID INT,"
+                    + "VIN VARCHAR(17),"
+                    + "SALESPERSON_ID INT,"
                     + "DEALER_ID INT,"
                     + "TOTAL INT,"
-                    + "DATE VARCHAR(10),"
+                    + "SALE_DATE VARCHAR(10),"
                     +"FOREIGN KEY(DEALER_ID) REFERENCES Dealer,"
-                    +"FOREIGN KEY(SALEPERSON_ID) REFERENCES SalePerson"
+                    +"FOREIGN KEY(SALEPERSON_ID) REFERENCES SalesPerson"
                     + ");" ;
 
             /**
@@ -33,10 +34,17 @@ public class SaleTable {
     }
 
     public static void importFromCSV(Connection conn, String file) throws SQLException{
-        String sql = "INSERT INTO sale(SALE_ID, VIN, SALESPERSON_ID, DEALER_ID, TOTAL, DATE)"
+        String sql = "INSERT INTO sale(SALE_ID, VIN, SALESPERSON_ID, DEALER_ID, TOTAL, SALE_DATE)"
                 + "SELECT * FROM CSVREAD('" + file + "')";
-        Statement stmt = conn.createStatement();
-        stmt.execute(sql);
+        try{
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("There was a problem populating the sale table\n" +
+                    "Please contact your database administrator\n");
+        }
+
     }
 
     public static String getSale(Connection conn, int sale_id, int salesperson_id, int customer_id, int dealer_id, String date){

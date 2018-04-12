@@ -407,15 +407,15 @@ public class Main {
             // TODO This is where we create the tables
             CustomerTable.createCustomerTable(conn);
             VehicleTable.createVehicleTable(conn);
-            VehicleSoldTable.createVehicleSoldTable(conn);
+            CustomerSoldTable.createCustomerSoldTable(conn);
             SalesPersonTable.createSalesPersonTable(conn);
             DealerTable.createDealerTable(conn);
-
             SaleTable.createSaleTable(conn);
-
             // TODO This is where we can seed the tables
             CustomerTable.populateFromCSV(conn, "data/customer.csv");
             VehicleTable.importFromCsv(conn, "data/vehicle.csv");
+            //CustomerSoldTable.importFromCSV(conn, "data/vehicleSoldToCustomer.csv");
+            SaleTable.importFromCSV(conn, "data/sale.csv");
 
             // TODO This is probably where we should scan
         } catch (Exception e) {
