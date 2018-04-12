@@ -46,43 +46,30 @@ public class DealerTable {
         stmt.execute(sql);
     }
 
-    public static String getDealer(Connection conn, int id, String name, String address, String city, String state, int zip){
+    public static ResultSet getDealer(Connection conn,
+                                   ArrayList<String> cols,
+                                   ArrayList<String> whereClauses){
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM dealer WHERE ");
-        ArrayList<String> whereClauses = new ArrayList<>();
-        if (id != -1) whereClauses.add(String.format("DEALER_ID = %d", id));
-        if (!name.equals("")) whereClauses.add("NAME = " + name);
-        if (!address.equals("")) whereClauses.add("ADDRESS = " + address);
-        if (!city.equals("")) whereClauses.add("CITY = " + city);
-        if (!state.equals("")) whereClauses.add("STATE = " + state);
-        if (zip != -1) whereClauses.add(String.format("ZIP = %d", zip));
-        for(int i = 0; i < whereClauses.size(); i++){
-            query.append(whereClauses.get(i));
-            if (i != whereClauses.size() - 1) {
-                query.append(" AND ");
-            } else {
-                query.append(";");
+        query.append("SELECT * FROM dealer");
+        if (!whereClauses.isEmpty()){
+            query.append(" WHERE");
+            for(int i=0; i<whereClauses.size(); i++){
+                if(i != whereClauses.size() -1){
+                    query.append(" " + cols.get(i) + " = '" + whereClauses.get(i) + "' AND ");
+                }
+                else{
+                    query.append(" " + cols.get(i) + " = '" + whereClauses.get(i) + "'");
+                }
             }
         }
+        query.append(";");
 
         try {
             Statement stmt = conn.createStatement();
-            ResultSet resultSet = stmt.executeQuery(query.toString());
-            StringBuilder result = new StringBuilder();
-            while(resultSet.next()){
-                result.append(String.format("Dealer: %d %s %s %s %s %d\n",
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getInt(6)));
-            }
-            return result.toString();
-
+            return stmt.executeQuery(query.toString());
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 }

@@ -83,7 +83,7 @@ public class Main {
         vehicleLocator.put(10, "CITY");
 
         HashMap<Integer, String> dealerAttributes = new HashMap<>();
-        dealerAttributes.put(1, "DEALERID");    //Todo check if this is DealerID or ID in table
+        dealerAttributes.put(1, "DEALER_ID");
         dealerAttributes.put(2, "NAME");
         dealerAttributes.put(3, "ADDRESS");
         dealerAttributes.put(4, "CITY");
@@ -338,6 +338,25 @@ public class Main {
     public static void dealerLocator(Connection conn, HashMap<Integer, String> dealerAttributes, Scanner scanner){
         System.out.println("Welcome to the Dealer Locator Service");
         showSelection(conn, dealerAttributes, scanner);
+
+        ResultSet results = DealerTable.getDealer(conn, tableCols, whereClauses);
+
+        if (results != null) {
+            try {
+                ResultSetMetaData rsmd = results.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (results.next()) {
+                    for (int i = 1; i <= columnCount; i++) {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = results.getString(i);
+                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                    }
+                    System.out.println("");
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void salesReportLocator(Connection conn, HashMap<Integer, String> reportAttibutes, Scanner scanner){
