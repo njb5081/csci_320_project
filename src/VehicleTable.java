@@ -1,6 +1,8 @@
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -90,5 +92,66 @@ public class VehicleTable extends Main {
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Delete all vehicles.
+     *
+     * @param Connection conn
+     */
+    public static void deleteAll(Connection conn) {
+
+        try{
+            String query = "DELETE FROM vehicle;";
+            Statement stmt = conn.createStatement();
+            System.out.println(query);
+            stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Get a list of vehicles matching your where clauses.
+     *
+     * @param Connection conn
+     * @param ArrayList<String> cols
+     * @param ArrayList<String> whereClauses
+     * @return ResultSet vehicles
+     */
+    public static ResultSet getVehicle(Connection conn,
+                                        ArrayList<String> cols,
+                                        ArrayList<String> whereClauses) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM vehicle");
+
+        if (!whereClauses.isEmpty()){
+            sb.append(" WHERE");
+            for(int i=0; i<whereClauses.size(); i++){
+                if(i != whereClauses.size() -1){
+                    sb.append(" " + cols.get(i) + " = '" + whereClauses.get(i) + "' AND ");
+                }
+                else{
+                    sb.append(" " + cols.get(i) + " = '" + whereClauses.get(i) + "'");
+                }
+            }
+        }
+
+        sb.append(";");
+
+        //Print it out to verify it made it right
+        System.out.println("Query: " + sb.toString());
+        try {
+            //Execute the query and return the result set
+            Statement stmt = conn.createStatement();
+            return stmt.executeQuery(sb.toString());
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode());
+            System.out.println(e.getMessage());
+            System.out.println("Something went wrong with the query");;
+        }
+
+        return null;
     }
 }

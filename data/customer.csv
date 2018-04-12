@@ -1,4 +1,4 @@
-customer_id,first_name,last_name,address,city,state,zip,phone,gender,income,salesPersonID
+CUSTOMER_ID,FIRST_NAME,LAST_NAME,ADDRESS,CITY,STATE,ZIP,PHONE,GENDER,INCOME,SALESPERSON_ID
 1,Stephen,Yosifov,1723 Springs Park,Pittsburgh,PA,31154,-120-9292,M,6702339,19
 2,Ruperta,McDonagh,637 Bobwhite Plaza,Akron,OH,63641,330-396-5495,F,5638446,23
 3,Vassili,Ryde,2056 Westridge Pass,Toledo,OH,18286,419-188-5280,M,8144644,6

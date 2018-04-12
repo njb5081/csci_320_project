@@ -218,7 +218,7 @@ public class Main {
 
             }
             else if (selection == 2){
-                System.out.println("Enter vin");
+                System.out.println("Enter VIN");
                 String vin = scanner.nextLine();
                 System.out.println("Enter brand");
                 String brand = scanner.nextLine();
@@ -392,7 +392,6 @@ public class Main {
                 System.out.println(tableCols);
                 System.out.println(whereClauses);
                 break;
-                //TODO call vehicle search function in dealership table here
             } else {
                 userChoice = paramDict.get(Integer.parseInt(userChoice));
             }
@@ -400,6 +399,27 @@ public class Main {
             System.out.print("Enter your parameter for " + userChoice + " here: ");
             String whereParam = scanner.nextLine();
             whereClauses.add(whereParam);
+        }
+
+        // TODO check what method called showSelection()
+        // This code currently only works with Customer Vehicle Search
+        ResultSet results = VehicleTable.getVehicle(conn, tableCols, whereClauses);
+
+        if (results != null) {
+            try {
+                ResultSetMetaData rsmd = results.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (results.next()) {
+                    for (int i = 1; i <= columnCount; i++) {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = results.getString(i);
+                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                    }
+                    System.out.println("");
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
