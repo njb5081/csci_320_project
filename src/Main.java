@@ -350,6 +350,8 @@ public class Main {
             // TODO This is where we create the tables
             CustomerTable.createCustomerTable(conn);
             VehicleTable.createVehicleTable(conn);
+            VehicleSoldTable.createVehicleSoldTable(conn);
+            SaleTable.createSaleTable(conn);
             // TODO This is where we can seed the tables
             CustomerTable.populateFromCSV(conn, "data/customer.csv");
             VehicleTable.importFromCsv(conn, "data/vehicle.csv");
