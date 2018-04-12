@@ -78,29 +78,17 @@ public class CustomerTable {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT ");
 
-        if (cols.isEmpty()){
-            sb.append("* ");
-        }
-        else{
-            for(int i=0; i < cols.size(); i++){
-                if(i != cols.size() - 1){
-                    sb.append(cols.get(i) + ", " );
-                }
-                else {
-                    sb.append(cols.get(i) + " ");
-                }
-            }
-        }
-        sb.append("FROM customer");
+        sb.append("* ");
+        sb.append("FROM customer ");
 
-        if (!whereClauses.isEmpty()){
-            sb.append("WHERE");
-            for(int i=0; i<whereClauses.size(); i++){
-                if(i != whereClauses.size() -1){
-                    sb.append(whereClauses.get(i) + " AND ");
-                }
-                else{
-                    sb.append(whereClauses.get(i));
+        if (!whereClauses.isEmpty()) {
+            sb.append("WHERE ");
+
+            for (int i = 0; i < whereClauses.size(); i++) {
+                if (i != whereClauses.size() - 1) {
+                    sb.append(cols.get(i) + "=" + "'" + whereClauses.get(i) + "'" + " AND ");
+                } else {
+                    sb.append(cols.get(i) + "=" + "'" + whereClauses.get(i) + "'" );
                 }
             }
         }

@@ -6,6 +6,7 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 import com.sun.xml.internal.org.jvnet.fastinfoset.sax.FastInfosetReader;
 import sun.security.krb5.SCDynamicStoreConfig;
 
+import java.net.ConnectException;
 import java.sql.*;
 import java.util.*;
 
@@ -105,6 +106,15 @@ public class Main {
         salesReportAttributes.put(12, "STARTDATE"); //TODO RENAME TO ACTUAL COLUMN NAME
         salesReportAttributes.put(13, "ENDDATE"); //TODO RENAME TO ACTUAL COLUMN NAME
 
+        HashMap<Integer, String> customerAttributes = new HashMap<>();
+        customerAttributes.put(1, "FIRST_NAME");
+        customerAttributes.put(2, "LAST_NAME");
+        customerAttributes.put(3, "ADDRESS");
+        customerAttributes.put(4, "CITY");
+        customerAttributes.put(5, "STATE");
+        customerAttributes.put(6, "GENDER");
+
+
 
         //location of the database
         String loc = "~/csci_320";
@@ -120,7 +130,7 @@ public class Main {
                 "\nPress 1 if you are a database admin" +
                 "\nPress 2 if you are a dealership" +
                 "\nPress 3 if you are a customer" +
-                "\n Press 4 to add entries to the database" +
+                "\nPress 4 to add entries to the database" +
                 "\nEnter your selection here: ");
         int role = scanner.nextInt();
 
@@ -151,6 +161,7 @@ public class Main {
             System.out.println("Welcome to the dealer panel, please select one of the options below");
             System.out.print("Press 1 to locate a vehicle" +
                     "\nPress 2 to search for a sales records" +
+                    "\nPress 3 to search for a customer" +
                     "\nEnter your selection here: ");
             int system = scanner.nextInt();
             scanner.nextLine();
@@ -159,6 +170,9 @@ public class Main {
             }
             else if (system == 2){
                 salesReportLocator(conn, salesReportAttributes, scanner);
+            }
+            else if (system == 3){
+                customerLocator(conn, customerAttributes, scanner);
             }
             else {
                 System.out.println("Sorry we do not recognize your choice, please try again");
@@ -316,6 +330,30 @@ public class Main {
         showSelection(conn, searchParams, scanner);
 
         ResultSet results = VehicleTable.getVehicle(conn, tableCols, whereClauses);
+
+        if (results != null) {
+            try {
+                ResultSetMetaData rsmd = results.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (results.next()) {
+                    for (int i = 1; i <= columnCount; i++) {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = results.getString(i);
+                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                    }
+                    System.out.println("");
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static void customerLocator(Connection conn, HashMap<Integer, String> customerAttributes, Scanner scanner){
+        System.out.println("Welcome to the Customer Locator Service");
+        showSelection(conn, customerAttributes, scanner);
+
+        ResultSet results = CustomerTable.getCustomer(conn, tableCols, whereClauses);
 
         if (results != null) {
             try {
