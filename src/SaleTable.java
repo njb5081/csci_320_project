@@ -14,10 +14,12 @@ public class SaleTable {
         try {
             String query = "CREATE TABLE IF NOT EXISTS sale("
                     + "SALE_ID INT PRIMARY KEY,"
-                    + "SALEPERSON_ID INT FOREIGN KEY,"
-                    + "DEALER_ID INT FOREIGN KEY,"
+                    + "SALEPERSON_ID INT,"
+                    + "DEALER_ID INT,"
                     + "TOTAL INT,"
                     + "DATE VARCHAR(10),"
+                    +"FOREIGN KEY(DEALER_ID) REFERENCES Dealer,"
+                    +"FOREIGN KEY(SALEPERSON_ID) REFERENCES SalePerson"
                     + ");" ;
 
             /**

@@ -12,7 +12,7 @@ public class VehicleSoldTable {
         try {
             String query = "CREATE TABLE IF NOT EXISTS vehicle_sold("
                     + "SALE_ID INT PRIMARY KEY,"
-                    + "VIN VARCHAR(17) ,"
+                    + "VIN VARCHAR(17),"
                     + ");" ;
 
             /**
