@@ -73,13 +73,22 @@ public class CustomerTable {
     }
 
     public static ResultSet getCustomer(Connection conn,
+                                        ArrayList<String> desiredCols,
                                         ArrayList<String> cols,
                                         ArrayList<String> whereClauses) {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT ");
 
-        sb.append("* ");
-        sb.append("FROM customer ");
+        for (int i = 0; i < desiredCols.size(); i++) {
+            if (i != desiredCols.size() - 1) {
+                sb.append(desiredCols.get(i) + ",");
+            } else {
+                sb.append(desiredCols.get(i));
+            }
+        }
+
+
+        sb.append(" FROM customer ");
 
         if (!whereClauses.isEmpty()) {
             sb.append("WHERE ");

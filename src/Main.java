@@ -15,7 +15,7 @@ public class Main {
 
     //The connection to the database
     private Connection conn;
-
+    private static ArrayList<String> desiredCols = new ArrayList<>();
     private static ArrayList<String> tableCols = new ArrayList<>();
     private static ArrayList<String> whereClauses = new ArrayList<>();
 
@@ -353,7 +353,7 @@ public class Main {
         System.out.println("Welcome to the Customer Locator Service");
         showSelection(conn, customerAttributes, scanner);
 
-        ResultSet results = CustomerTable.getCustomer(conn, tableCols, whereClauses);
+        ResultSet results = CustomerTable.getCustomer(conn, desiredCols, tableCols, whereClauses);
 
         if (results != null) {
             try {
@@ -415,6 +415,7 @@ public class Main {
             CustomerTable.populateFromCSV(conn, "data/customer.csv");
             VehicleTable.importFromCsv(conn, "data/vehicle.csv");
             //CustomerSoldTable.importFromCSV(conn, "data/vehicleSoldToCustomer.csv");
+
             SaleTable.importFromCSV(conn, "data/sale.csv");
 
             // TODO This is probably where we should scan
@@ -445,19 +446,39 @@ public class Main {
     }
 
     public static void showSelection(Connection conn, HashMap<Integer, String> paramDict, Scanner scanner){
+        Boolean continueSelection = true;
+        for (Map.Entry<Integer, String> entry : paramDict.entrySet()) {
+            System.out.println("Press " + Integer.toString(entry.getKey()) +
+                    " to include " + entry.getValue() + " in the results");
+        }
+        desiredCols = new ArrayList<>();
+        while (continueSelection){
+            System.out.print("Enter your selection here or the grave maker (`) to continue : ");
+            String userChoice = scanner.nextLine();
+            if (userChoice.equals("`")) {
+                continueSelection = false;
+                System.out.println(tableCols);
+                System.out.println(whereClauses);
+                break;
+            }
+            else{
+                userChoice = paramDict.get(Integer.parseInt(userChoice));
+            }
+            desiredCols.add(userChoice);
+        }
         for (Map.Entry<Integer, String> entry : paramDict.entrySet()) {
             System.out.println("Press " + Integer.toString(entry.getKey()) +
                     " to search using a " + entry.getValue());
         }
         tableCols = new ArrayList<>();
         whereClauses = new ArrayList<>();
-        Boolean continueSelection = true;
 
-        while (continueSelection) {
+
+        while (true) {
             System.out.print("Enter your selection here or press ` (grave marker) to begin the search: ");
             String userChoice = scanner.nextLine();
             if (userChoice.equals("`")) {
-                continueSelection = false;
+                System.out.println("desired cols " + desiredCols);
                 System.out.println(tableCols);
                 System.out.println(whereClauses);
                 break;
