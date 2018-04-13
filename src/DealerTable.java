@@ -18,7 +18,7 @@ public class DealerTable {
                     + "ADDRESS VARCHAR(95),"
                     + "CITY VARCHAR(35),"
                     + "STATE VARCHAR(15),"
-                    + "ZIP NUMERIC(12,0)"
+                    + "ZIP INT"
                     + ");";
             Statement stmt = conn.createStatement();
             stmt.execute(query);
@@ -40,7 +40,7 @@ public class DealerTable {
     }
 
     public static void importFromCSV(Connection conn, String filename) throws SQLException{
-        String sql = "INSERT INTO dealer(SALESPERSON_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, DEALER_ID)"
+        String sql = "INSERT INTO dealer(DEALER_ID, NAME, ADDRESS, CITY, STATE, ZIP)"
                 + "SELECT * FROM CSVREAD('" + filename + "')";
         Statement stmt = conn.createStatement();
         stmt.execute(sql);
