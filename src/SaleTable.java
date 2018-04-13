@@ -16,6 +16,7 @@ public class SaleTable {
                     + "SALE_ID INT PRIMARY KEY,"
                     + "VIN VARCHAR(17),"
                     + "SALESPERSON_ID INT,"
+                    + "CUSTOMER_ID INT,"
                     + "DEALER_ID INT,"
                     + "TOTAL INT,"
                     + "SALE_DATE VARCHAR(10),"
@@ -34,8 +35,8 @@ public class SaleTable {
     }
 
     public static void importFromCSV(Connection conn, String file) throws SQLException{
-        String sql = "INSERT INTO sale(SALE_ID, VIN, SALESPERSON_ID, DEALER_ID, TOTAL, SALE_DATE)"
-                + "SELECT * FROM CSVREAD('" + file + "')";
+        String sql = "MERGE INTO sale(SALE_ID, VIN, SALESPERSON_ID, CUSTOMER_ID, DEALER_ID, TOTAL, SALE_DATE)"
+                + "SELECT * FROM CSVREAD('" + file + "');";
         try{
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
