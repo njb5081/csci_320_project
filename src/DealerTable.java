@@ -47,10 +47,22 @@ public class DealerTable {
     }
 
     public static ResultSet getDealer(Connection conn,
-                                   ArrayList<String> cols,
-                                   ArrayList<String> whereClauses){
+                                      ArrayList<String> desiredCols,
+                                      ArrayList<String> cols,
+                                      ArrayList<String> whereClauses){
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM dealer");
+        query.append("SELECT ");
+
+        for (int i = 0; i < desiredCols.size(); i++) {
+            if (i != desiredCols.size() - 1) {
+                query.append(desiredCols.get(i) + ",");
+            } else {
+                query.append(desiredCols.get(i));
+            }
+        }
+
+        query.append(" FROM dealer ");
+
         if (!whereClauses.isEmpty()){
             query.append(" WHERE");
             for(int i=0; i<whereClauses.size(); i++){

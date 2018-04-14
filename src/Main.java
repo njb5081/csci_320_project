@@ -329,7 +329,7 @@ public class Main {
         System.out.println("\n\nWelcome to the Vehicle locator");
         showSelection(conn, searchParams, scanner);
 
-        ResultSet results = VehicleTable.getVehicle(conn, tableCols, whereClauses);
+        ResultSet results = VehicleTable.getVehicle(conn, desiredCols, tableCols, whereClauses);
 
         if (results != null) {
             try {
@@ -377,7 +377,7 @@ public class Main {
         System.out.println("Welcome to the Dealer Locator Service");
         showSelection(conn, dealerAttributes, scanner);
 
-        ResultSet results = DealerTable.getDealer(conn, tableCols, whereClauses);
+        ResultSet results = DealerTable.getDealer(conn, desiredCols, tableCols, whereClauses);
 
         if (results != null) {
             try {

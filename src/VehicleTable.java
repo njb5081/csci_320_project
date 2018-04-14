@@ -116,15 +116,27 @@ public class VehicleTable extends Main {
      * Get a list of vehicles matching your where clauses.
      *
      * @param Connection conn
+     * @param ArrayList<String> desiredCols
      * @param ArrayList<String> cols
      * @param ArrayList<String> whereClauses
      * @return ResultSet vehicles
      */
     public static ResultSet getVehicle(Connection conn,
+                                        ArrayList<String> desiredCols,
                                         ArrayList<String> cols,
                                         ArrayList<String> whereClauses) {
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM vehicle");
+        sb.append("SELECT ");
+
+        for (int i = 0; i < desiredCols.size(); i++) {
+            if (i != desiredCols.size() - 1) {
+                sb.append(desiredCols.get(i) + ",");
+            } else {
+                sb.append(desiredCols.get(i));
+            }
+        }
+
+        sb.append(" FROM vehicle ");
 
         if (!whereClauses.isEmpty()){
             sb.append(" WHERE");
