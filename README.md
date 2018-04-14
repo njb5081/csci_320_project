@@ -2,7 +2,8 @@
 ## Created by: Tyson Sisco, Jake Dulin, Nicholas Baxter, Chris Baudouin
 
 ### Building the Application
-// TODO: explain build steps
+* Open the terminal and navigate to the root of this project
+* Launch the application via `java -jar out/artifacts/automobile_project_jar/automobile_project.jar`
 
 ### Using the Application
 * The flow of the application is simple. The system will first prompt the user for his or her role (database administrator, dealership, or customer). Press the number corresponding to your role in the system.
