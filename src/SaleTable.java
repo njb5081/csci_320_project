@@ -18,11 +18,11 @@ public class SaleTable {
                     + "SALESPERSON_ID INT,"
                     + "CUSTOMER_ID INT,"
                     + "DEALER_ID INT,"
-                    + "TOTAL INT,"
-                    + "SALE_DATE VARCHAR(10),"
-                    +"FOREIGN KEY(DEALER_ID) REFERENCES Dealer,"
-                    +"FOREIGN KEY(SALEPERSON_ID) REFERENCES SalesPerson"
-                    + ");" ;
+                    + "TOTAL DECIMAL(10,2),"
+                    + "SALE_DATE DATE"
+//                    + "FOREIGN KEY(DEALER_ID) REFERENCES Dealer,"
+//                    + "FOREIGN KEY(SALESPERSON_ID) REFERENCES SalesPerson"
+                    + ");";
 
             /**
              * Create a query and execute
@@ -35,11 +35,11 @@ public class SaleTable {
     }
 
     public static void importFromCSV(Connection conn, String file) throws SQLException{
-        String sql = "MERGE INTO sale " + "SELECT * FROM CSVREAD('" + file + "');";
-        try{
+        String sql = "MERGE INTO sale SELECT * FROM CSVREAD('" + file + "');";
+        try {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("There was a problem populating the sale table\n" +
                     "Please contact your database administrator\n");

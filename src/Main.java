@@ -404,23 +404,23 @@ public class Main {
 
     public static void init(Connection conn) {
         try {
-            // TODO This is where we create the tables
+            // drop all database objects prior to creating tables
+            clearDatabase(conn);
+
+            // create the tables
             CustomerTable.createCustomerTable(conn);
             VehicleTable.createVehicleTable(conn);
             CustomerSoldTable.createCustomerSoldTable(conn);
             SalesPersonTable.createSalesPersonTable(conn);
             DealerTable.createDealerTable(conn);
             SaleTable.createSaleTable(conn);
-            // TODO This is where we can seed the tables
+
+            // seed the tables
             CustomerTable.populateFromCSV(conn, "data/customer.csv");
             VehicleTable.importFromCsv(conn, "data/vehicle.csv");
-            //CustomerSoldTable.importFromCSV(conn, "data/vehicleSoldToCustomer.csv");
-
             SaleTable.importFromCSV(conn, "data/sale.csv");
-
-            // TODO This is probably where we should scan
+            //CustomerSoldTable.importFromCSV(conn, "data/vehicleSoldToCustomer.csv");
         } catch (Exception e) {
-            //TODO fix the catch all exception case
             e.printStackTrace();
         }
     }
@@ -489,6 +489,17 @@ public class Main {
             System.out.print("Enter your parameter for " + userChoice + " here: ");
             String whereParam = scanner.nextLine();
             whereClauses.add(whereParam);
+        }
+    }
+
+    public static void clearDatabase(Connection conn) {
+        String deleteQuery = "DROP ALL OBJECTS;";
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(deleteQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

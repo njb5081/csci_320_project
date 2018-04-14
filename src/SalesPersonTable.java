@@ -24,8 +24,8 @@ public class SalesPersonTable {
                     + "LAST_NAME VARCHAR(25),"
                     + "PHONE VARCHAR(20),"
                     + "EMAIL VARCHAR(50),"
-                    + "DEALER_ID INT,"
-                    + "FOREIGN KEY (DEALER_ID) REFERENCES dealer(DEALER_ID)"
+                    + "DEALER_ID INT"
+//                    + "FOREIGN KEY (DEALER_ID) REFERENCES dealer(DEALER_ID)"
                     + ");";
             Statement stmt = conn.createStatement();
             stmt.execute(query);
