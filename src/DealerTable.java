@@ -40,8 +40,8 @@ public class DealerTable {
     }
 
     public static void importFromCSV(Connection conn, String filename) throws SQLException{
-        String sql = "INSERT INTO dealer(DEALER_ID, DEALER_NAME, ADDRESS, CITY, STATE, ZIP)"
-                + "SELECT * FROM CSVREAD('" + filename + "')";
+        String sql = "MERGE INTO dealer(DEALER_ID, DEALER_NAME, ADDRESS, CITY, STATE, ZIP)"
+                + " SELECT * FROM CSVREAD('" + filename + "')";
         Statement stmt = conn.createStatement();
         stmt.execute(sql);
     }

@@ -13,8 +13,7 @@ public class CustomerSoldTable {
             String query = "CREATE TABLE IF NOT EXISTS customer_sold("
                     + "SALE_ID INT PRIMARY KEY,"
                     + "VIN VARCHAR(17),"
-                    + "TOTAL INT(6),"
-                    + "SALE_DATE VARCHAR(10)"
+                    + "SALE_DATE DATE"
                     + ");" ;
 
             /**
@@ -28,8 +27,8 @@ public class CustomerSoldTable {
     }
 
     public static void importFromCSV(Connection conn, String file) throws SQLException{
-        String sql = "INSERT INTO customer_sold(SALE_ID, VIN, TOTAL, SALE_DATE)"
-                + "SELECT * FROM CSVREAD('" + file + "')";
+        String sql = "MERGE INTO customer_sold(SALE_ID, VIN, SALE_DATE)"
+                + " SELECT * FROM CSVREAD('" + file + "')";
         try {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);

@@ -418,8 +418,10 @@ public class Main {
             // seed the tables
             CustomerTable.populateFromCSV(conn, "data/customer.csv");
             VehicleTable.importFromCsv(conn, "data/vehicle.csv");
+            CustomerSoldTable.importFromCSV(conn, "data/customerSold.csv");
+            SalesPersonTable.importFromCSV(conn, "data/salesperson.csv");
+            DealerTable.importFromCSV(conn, "data/dealer.csv");
             SaleTable.importFromCSV(conn, "data/sale.csv");
-            //CustomerSoldTable.importFromCSV(conn, "data/vehicleSoldToCustomer.csv");
         } catch (Exception e) {
             e.printStackTrace();
         }

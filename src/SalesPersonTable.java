@@ -62,8 +62,8 @@ public class SalesPersonTable {
      */
     public static void importFromCSV(Connection conn, String filename)
             throws SQLException {
-        String sql = "INSERT INTO salesperson(SALESPERSON_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, DEALER_ID)"
-                        + "SELECT * FROM CSVREAD('" + filename + "')";
+        String sql = "MERGE INTO salesperson(SALESPERSON_ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, DEALER_ID)"
+                        + " SELECT * FROM CSVREAD('" + filename + "')";
         Statement stmt = conn.createStatement();
         stmt.execute(sql);
 
