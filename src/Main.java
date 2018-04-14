@@ -1,22 +1,24 @@
 /**
  * Created by Nicholas on 3/18/2018.
+ * Modified by all.
  */
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-import com.sun.xml.internal.org.jvnet.fastinfoset.sax.FastInfosetReader;
-import sun.security.krb5.SCDynamicStoreConfig;
-
-import java.net.ConnectException;
 import java.sql.*;
 import java.util.*;
 
 
 public class Main {
 
-    //The connection to the database
+    // The connection to the database
     private Connection conn;
-    private static ArrayList<String> desiredCols = new ArrayList<>();
+
+    // The columns that the user is searching on
     private static ArrayList<String> tableCols = new ArrayList<>();
+
+    // The columns that the user wants to include in search results
+    private static ArrayList<String> desiredCols = new ArrayList<>();
+
+    // The where clauses of the user's current search
     private static ArrayList<String> whereClauses = new ArrayList<>();
 
     /**
@@ -48,7 +50,7 @@ public class Main {
     }
 
     /**
-     * just returns the connection
+     * Just returns the connection
      * @return: returns class level connection
      */
     public Connection getConnection(){
@@ -144,7 +146,8 @@ public class Main {
             scanner.nextLine();
 
             if (system == 1){
-                adminSQL(conn, scanner);
+                ResultSet results = adminSQL(conn, scanner);
+                displayResultSet(results);
             }
             else if (system == 2){
                 vehicleLocatorFunction(conn, vehicleLocator, scanner);
@@ -331,22 +334,7 @@ public class Main {
 
         ResultSet results = VehicleTable.getVehicle(conn, desiredCols, tableCols, whereClauses);
 
-        if (results != null) {
-            try {
-                ResultSetMetaData rsmd = results.getMetaData();
-                int columnCount = rsmd.getColumnCount();
-                while (results.next()) {
-                    for (int i = 1; i <= columnCount; i++) {
-                        if (i > 1) System.out.print(",  ");
-                        String columnValue = results.getString(i);
-                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                    }
-                    System.out.println("");
-                }
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        displayResultSet(results);
     }
 
     public static void customerLocator(Connection conn, HashMap<Integer, String> customerAttributes, Scanner scanner){
@@ -355,22 +343,7 @@ public class Main {
 
         ResultSet results = CustomerTable.getCustomer(conn, desiredCols, tableCols, whereClauses);
 
-        if (results != null) {
-            try {
-                ResultSetMetaData rsmd = results.getMetaData();
-                int columnCount = rsmd.getColumnCount();
-                while (results.next()) {
-                    for (int i = 1; i <= columnCount; i++) {
-                        if (i > 1) System.out.print(",  ");
-                        String columnValue = results.getString(i);
-                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                    }
-                    System.out.println("");
-                }
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        displayResultSet(results);
     }
 
     public static void dealerLocator(Connection conn, HashMap<Integer, String> dealerAttributes, Scanner scanner){
@@ -379,27 +352,14 @@ public class Main {
 
         ResultSet results = DealerTable.getDealer(conn, desiredCols, tableCols, whereClauses);
 
-        if (results != null) {
-            try {
-                ResultSetMetaData rsmd = results.getMetaData();
-                int columnCount = rsmd.getColumnCount();
-                while (results.next()) {
-                    for (int i = 1; i <= columnCount; i++) {
-                        if (i > 1) System.out.print(",  ");
-                        String columnValue = results.getString(i);
-                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                    }
-                    System.out.println("");
-                }
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        displayResultSet(results);
     }
 
     public static void salesReportLocator(Connection conn, HashMap<Integer, String> reportAttibutes, Scanner scanner){
         System.out.println("Welcome to the sales history search");
         showSelection(conn, reportAttibutes, scanner);
+
+        // TODO: implement this! same as above functions...
     }
 
     public static void init(Connection conn) {
@@ -434,10 +394,6 @@ public class Main {
             Statement stmt = conn.createStatement();
             System.out.println(query);
             ResultSet result = stmt.executeQuery(query);
-            System.out.println(result.toString());
-            while(result.next()){
-                System.out.printf("%s", result.getString(2));
-            }
 
             return result;
         } catch (SQLException e) {
@@ -502,6 +458,25 @@ public class Main {
             stmt.execute(deleteQuery);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void displayResultSet(ResultSet results) {
+        if (results != null) {
+            try {
+                ResultSetMetaData rsmd = results.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (results.next()) {
+                    for (int i = 1; i <= columnCount; i++) {
+                        if (i > 1) System.out.print(",  ");
+                        String columnValue = results.getString(i);
+                        System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                    }
+                    System.out.println("");
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
