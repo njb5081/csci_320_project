@@ -14,11 +14,11 @@ public class DealerTable {
         try {
             String query = "CREATE TABLE IF NOT EXISTS dealer("
                     + "DEALER_ID INT PRIMARY KEY,"
-                    + "DEALER_NAME VARCHAR(100),"
-                    + "ADDRESS VARCHAR(95),"
-                    + "CITY VARCHAR(35),"
-                    + "STATE VARCHAR(15),"
-                    + "ZIP INT"
+                    + "DEALER_NAME VARCHAR(100) NOT NULL,"
+                    + "ADDRESS VARCHAR(95) NOT NULL,"
+                    + "CITY VARCHAR(35) NOT NULL,"
+                    + "STATE VARCHAR(15) NOT NULL,"
+                    + "ZIP INT NOT NULL"
                     + ");";
             Statement stmt = conn.createStatement();
             stmt.execute(query);

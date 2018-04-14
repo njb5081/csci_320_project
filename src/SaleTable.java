@@ -13,13 +13,13 @@ public class SaleTable {
     public static void createSaleTable(Connection conn){
         try {
             String query = "CREATE TABLE IF NOT EXISTS sale("
-                    + "SALE_ID INT PRIMARY KEY,"
-                    + "VIN VARCHAR(17),"
-                    + "SALESPERSON_ID INT,"
-                    + "CUSTOMER_ID INT,"
-                    + "DEALER_ID INT,"
-                    + "TOTAL DECIMAL(10,2),"
-                    + "SALE_DATE DATE"
+                    + "SALE_ID INT PRIMARY KEY NOT NULL,"
+                    + "VIN VARCHAR(17) NOT NULL,"
+                    + "SALESPERSON_ID INT NOT NULL,"
+                    + "CUSTOMER_ID INT NOT NULL,"
+                    + "DEALER_ID INT NOT NULL,"
+                    + "TOTAL DECIMAL(10,2) NOT NULL,"
+                    + "SALE_DATE DATE NOT NULL"
 //                    + "FOREIGN KEY(DEALER_ID) REFERENCES Dealer,"
 //                    + "FOREIGN KEY(SALESPERSON_ID) REFERENCES SalesPerson"
                     + ");";

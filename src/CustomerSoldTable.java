@@ -12,8 +12,8 @@ public class CustomerSoldTable {
         try {
             String query = "CREATE TABLE IF NOT EXISTS customer_sold("
                     + "SALE_ID INT PRIMARY KEY,"
-                    + "VIN VARCHAR(17),"
-                    + "SALE_DATE DATE"
+                    + "VIN VARCHAR(17) NOT NULL,"
+                    + "SALE_DATE DATE NOT NULL"
                     + ");" ;
 
             /**

@@ -20,10 +20,10 @@ public class SalesPersonTable {
         try {
             String query = "CREATE TABLE IF NOT EXISTS salesperson("
                     + "SALESPERSON_ID INT PRIMARY KEY,"
-                    + "FIRST_NAME VARCHAR(25),"
-                    + "LAST_NAME VARCHAR(25),"
-                    + "PHONE VARCHAR(20),"
-                    + "EMAIL VARCHAR(50),"
+                    + "FIRST_NAME VARCHAR(25) NOT NULL,"
+                    + "LAST_NAME VARCHAR(25) NOT NULL,"
+                    + "PHONE VARCHAR(20) NOT NULL,"
+                    + "EMAIL VARCHAR(50) NOT NULL,"
                     + "DEALER_ID INT"
 //                    + "FOREIGN KEY (DEALER_ID) REFERENCES dealer(DEALER_ID)"
                     + ");";
