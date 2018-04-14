@@ -43,9 +43,8 @@ public class Main {
                     user,
                     password);
         } catch (SQLException | ClassNotFoundException e) {
-            //You should handle this better
-            //TODO handle this better
-            e.printStackTrace();
+            System.out.println("Sorry! We either couldn't find where you put the database or couldn't create the" +
+                    "connection! Please check your set-up and try again.");
         }
     }
 
@@ -105,8 +104,8 @@ public class Main {
         salesReportAttributes.put(9, "CITY");
         salesReportAttributes.put(10, "STATE");
         salesReportAttributes.put(11, "ZIP");
-        salesReportAttributes.put(12, "STARTDATE"); //TODO RENAME TO ACTUAL COLUMN NAME
-        salesReportAttributes.put(13, "ENDDATE"); //TODO RENAME TO ACTUAL COLUMN NAME
+        salesReportAttributes.put(12, "DATE_SOLD_TO_DEALER");
+        salesReportAttributes.put(13, "SALE_DATE");
 
         HashMap<Integer, String> customerAttributes = new HashMap<>();
         customerAttributes.put(1, "FIRST_NAME");
@@ -256,8 +255,8 @@ public class Main {
                 System.out.println("Enter current dealership ID where vehicle is located or leave blank if already bought");
                 Integer dealerID = scanner.nextInt();
                 scanner.nextLine();
-                //Todo check date format
-                System.out.println("Enter date sold to dealer of assigned salesperson");
+
+                System.out.println("Enter date sold to dealer (YYYY-MM-DD)");
                 Integer date = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println("Enter manufacturer");
