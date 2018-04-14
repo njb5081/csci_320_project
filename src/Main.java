@@ -85,7 +85,7 @@ public class Main {
 
         HashMap<Integer, String> dealerAttributes = new HashMap<>();
         dealerAttributes.put(1, "DEALER_ID");
-        dealerAttributes.put(2, "NAME");
+        dealerAttributes.put(2, "DEALER_NAME");
         dealerAttributes.put(3, "ADDRESS");
         dealerAttributes.put(4, "CITY");
         dealerAttributes.put(5, "STATE");
@@ -98,7 +98,7 @@ public class Main {
         salesReportAttributes.put(4, "ENGINE");
         salesReportAttributes.put(5, "TRANSMISSION");
         salesReportAttributes.put(6, "MANUFACTURER");
-        salesReportAttributes.put(7, "NAME");
+        salesReportAttributes.put(7, "DEALER_NAME");
         salesReportAttributes.put(8, "ADDRESS");
         salesReportAttributes.put(9, "CITY");
         salesReportAttributes.put(10, "STATE");

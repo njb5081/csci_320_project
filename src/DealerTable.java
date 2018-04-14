@@ -14,7 +14,7 @@ public class DealerTable {
         try {
             String query = "CREATE TABLE IF NOT EXISTS dealer("
                     + "DEALER_ID INT PRIMARY KEY,"
-                    + "NAME VARCHAR(100),"
+                    + "DEALER_NAME VARCHAR(100),"
                     + "ADDRESS VARCHAR(95),"
                     + "CITY VARCHAR(35),"
                     + "STATE VARCHAR(15),"
@@ -40,7 +40,7 @@ public class DealerTable {
     }
 
     public static void importFromCSV(Connection conn, String filename) throws SQLException{
-        String sql = "INSERT INTO dealer(DEALER_ID, NAME, ADDRESS, CITY, STATE, ZIP)"
+        String sql = "INSERT INTO dealer(DEALER_ID, DEALER_NAME, ADDRESS, CITY, STATE, ZIP)"
                 + "SELECT * FROM CSVREAD('" + filename + "')";
         Statement stmt = conn.createStatement();
         stmt.execute(sql);
