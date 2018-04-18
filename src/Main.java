@@ -126,202 +126,206 @@ public class Main {
         Connection conn = main.getConnection();
         init(conn);
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Welcome to the automobile database management system" +
-                "\nPress 1 if you are a database admin" +
-                "\nPress 2 if you are a dealership" +
-                "\nPress 3 if you are a customer" +
-                "\nPress 4 to add entries to the database" +
-                "\nEnter your selection here: ");
-        int role = scanner.nextInt();
-
-        if (role == 1){
-            System.out.println("Welcome to the admin panel, please select on of the options below");
-            System.out.print("Press 1 to query the database directly with your own SQL statements" +
-                    "\nPress 2 to use the vehicle locator function" +
-                    "\nPress 3 to locate a dealership" +
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Welcome to the automobile database management system" +
+                    "\nPress 1 if you are a database admin" +
+                    "\nPress 2 if you are a dealership" +
+                    "\nPress 3 if you are a customer" +
+                    "\nPress 4 to add entries to the database" +
                     "\nEnter your selection here: ");
-            int system = scanner.nextInt();
-            scanner.nextLine();
+            int role = scanner.nextInt();
 
-            if (system == 1){
-                ResultSet results = adminSQL(conn, scanner);
-                displayResultSet(results);
+            if (role == 1){
+                System.out.println("Welcome to the admin panel, please select on of the options below");
+                System.out.print("Press 1 to query the database directly with your own SQL statements" +
+                        "\nPress 2 to use the vehicle locator function" +
+                        "\nPress 3 to locate a dealership" +
+                        "\nEnter your selection here: ");
+                int system = scanner.nextInt();
+                scanner.nextLine();
+
+                if (system == 1){
+                    ResultSet results = adminSQL(conn, scanner);
+                    displayResultSet(results);
+                }
+                else if (system == 2){
+                    vehicleLocatorFunction(conn, vehicleLocator, scanner);
+                }
+                else if (system == 3){
+                    dealerLocator(conn, dealerAttributes, scanner);
+                }
+                else{
+                    System.out.println("Sorry we do not recognise your choice. Please try again");
+                }
+
             }
-            else if (system == 2){
-                vehicleLocatorFunction(conn, vehicleLocator, scanner);
+            else if (role == 2){
+                System.out.println("Welcome to the dealer panel, please select one of the options below");
+                System.out.print("Press 1 to locate a vehicle" +
+                        "\nPress 2 to search for a sales records" +
+                        "\nPress 3 to search for a customer" +
+                        "\nEnter your selection here: ");
+                int system = scanner.nextInt();
+                scanner.nextLine();
+                if (system == 1){
+                    vehicleLocatorFunction(conn, vehicleLocator, scanner);
+                }
+                else if (system == 2){
+                    salesReportLocator(conn, salesReportAttributes, scanner);
+                }
+                else if (system == 3){
+                    customerLocator(conn, customerAttributes, scanner);
+                }
+                else {
+                    System.out.println("Sorry we do not recognize your choice, please try again");
+                }
+
             }
-            else if (system == 3){
-                dealerLocator(conn, dealerAttributes, scanner);
+            else if (role == 3){
+                System.out.println("Hello Customer! Please select one of the options below");
+                System.out.print("Press 1 to search for dealerships" +
+                        "\nPress 2 to search for a vehicle" +
+                        "\nEnter your selection here: ");
+                int system = scanner.nextInt();
+                scanner.nextLine();
+                if (system == 1){
+                    dealerLocator(conn, dealerAttributes, scanner);
+                }
+                else if (system == 2){
+                    vehicleLocatorFunction(conn, vehicleLocator, scanner);
+                }
+                else {
+                    System.out.println("Sorry we don't recognize that selection, please try again");
+                }
+            }
+
+            else if (role == 4){
+                System.out.println("Press 1 to add a new customer" +
+                        "\nPress 2 to add a new vehicle" +
+                        "\nPress 3 to add a new dealership" +
+                        "\nPress 4 to add a new salesperson" +
+                        "\nPress 5 to add a new sale" +
+                        "\nPress 6 to add a new sales record");
+                int selection = scanner.nextInt();
+                scanner.nextLine();
+                if (selection == 1){
+                    System.out.println("Enter first name");
+                    String fname = scanner.nextLine();
+                    System.out.println("Enter last name");
+                    String lname = scanner.nextLine();
+                    System.out.println("Enter street address");
+                    String street = scanner.nextLine();
+                    System.out.println("Enter city");
+                    String city = scanner.nextLine();
+                    System.out.println("Enter State (ex: NY, PA)");
+                    String state = scanner.nextLine();
+                    System.out.println("Enter zip code");
+                    Integer zip = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter phone");
+                    String phone = scanner.nextLine();
+                    System.out.println("Enter gender (M/F)");
+                    String gender = scanner.nextLine();
+                    System.out.println("Enter income (Round to nearest dollar with no commas");
+                    Integer income = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter Id of assigned salesperson");
+                    Integer salespersonId = scanner.nextInt();
+                    scanner.nextLine();
+                    //Todo need to call create customer here
+
+
+                }
+                else if (selection == 2){
+                    System.out.println("Enter VIN");
+                    String vin = scanner.nextLine();
+                    System.out.println("Enter brand");
+                    String brand = scanner.nextLine();
+                    System.out.println("Enter model");
+                    String model = scanner.nextLine();
+                    System.out.println("Enter color");
+                    String color = scanner.nextLine();
+                    System.out.println("Enter engine");
+                    String engine = scanner.nextLine();
+                    System.out.println("Enter transmission");
+                    String trans = scanner.nextLine();
+                    System.out.println("Enter mpg");
+                    Integer mpg = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter current dealership ID where vehicle is located or leave blank if already bought");
+                    Integer dealerID = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.println("Enter date sold to dealer (YYYY-MM-DD)");
+                    Integer date = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter manufacturer");
+                    String manufact = scanner.nextLine();
+
+                }
+                else if (selection == 3){
+                    System.out.println("Enter dealer name");
+                    String name = scanner.nextLine();
+                    System.out.println("Enter street address");
+                    String street = scanner.nextLine();
+                    System.out.println("Enter city");
+                    String city = scanner.nextLine();
+                    System.out.println("Enter State (ex: NY, PA)");
+                    String state = scanner.nextLine();
+                    System.out.println("Enter zip code");
+                    Integer zip = scanner.nextInt();
+                    scanner.nextLine();
+
+                }
+                else if (selection == 4){
+                    System.out.println("Enter first name");
+                    String fname = scanner.nextLine();
+                    System.out.println("Enter last name");
+                    String lname = scanner.nextLine();
+                    System.out.println("Enter phone");
+                    String phone = scanner.nextLine();
+                    System.out.println("Enter email");
+                    String email = scanner.nextLine();
+                    System.out.println("Enter Id of assigned dealer");
+                    Integer dealerId = scanner.nextInt();
+                    scanner.nextLine();
+
+                }
+                else if (selection == 5){
+                    System.out.println("Enter Id of assigned salesperson");
+                    Integer salespersonId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter Id of customer the vehicle was sold to");
+                    Integer customerId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter Id of dealer");
+                    Integer dealerId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter total sale price");
+                    Integer total = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter date of sale");
+                    Integer date = scanner.nextInt();
+                    scanner.nextLine();
+
+
+
+                }
+                else if (selection == 6){
+                    System.out.println("Enter Id of sale");
+                    Integer saleId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter vin");
+                    String vin = scanner.nextLine();
+
+                }
             }
             else{
-                System.out.println("Sorry we do not recognise your choice. Please try again");
+                System.out.println("Sorry, we do not recognize your choice, please select a role from above");
             }
 
-        }
-        else if (role == 2){
-            System.out.println("Welcome to the dealer panel, please select one of the options below");
-            System.out.print("Press 1 to locate a vehicle" +
-                    "\nPress 2 to search for a sales records" +
-                    "\nPress 3 to search for a customer" +
-                    "\nEnter your selection here: ");
-            int system = scanner.nextInt();
-            scanner.nextLine();
-            if (system == 1){
-                vehicleLocatorFunction(conn, vehicleLocator, scanner);
-            }
-            else if (system == 2){
-                salesReportLocator(conn, salesReportAttributes, scanner);
-            }
-            else if (system == 3){
-                customerLocator(conn, customerAttributes, scanner);
-            }
-            else {
-                System.out.println("Sorry we do not recognize your choice, please try again");
-            }
-
-        }
-        else if (role == 3){
-            System.out.println("Hello Customer! Please select one of the options below");
-            System.out.print("Press 1 to search for dealerships" +
-                    "\nPress 2 to search for a vehicle" +
-                    "\nEnter your selection here: ");
-            int system = scanner.nextInt();
-            scanner.nextLine();
-            if (system == 1){
-                dealerLocator(conn, dealerAttributes, scanner);
-            }
-            else if (system == 2){
-                vehicleLocatorFunction(conn, vehicleLocator, scanner);
-            }
-            else {
-                System.out.println("Sorry we don't recognize that selection, please try again");
-            }
-        }
-
-        else if (role == 4){
-            System.out.println("Press 1 to add a new customer" +
-                    "\nPress 2 to add a new vehicle" +
-                    "\nPress 3 to add a new dealership" +
-                    "\nPress 4 to add a new salesperson" +
-                    "\nPress 5 to add a new sale" +
-                    "\nPress 6 to add a new sales record");
-            int selection = scanner.nextInt();
-            scanner.nextLine();
-            if (selection == 1){
-                System.out.println("Enter first name");
-                String fname = scanner.nextLine();
-                System.out.println("Enter last name");
-                String lname = scanner.nextLine();
-                System.out.println("Enter street address");
-                String street = scanner.nextLine();
-                System.out.println("Enter city");
-                String city = scanner.nextLine();
-                System.out.println("Enter State (ex: NY, PA)");
-                String state = scanner.nextLine();
-                System.out.println("Enter zip code");
-                Integer zip = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter phone");
-                String phone = scanner.nextLine();
-                System.out.println("Enter gender (M/F)");
-                String gender = scanner.nextLine();
-                System.out.println("Enter income (Round to nearest dollar with no commas");
-                Integer income = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter Id of assigned salesperson");
-                Integer salespersonId = scanner.nextInt();
-                scanner.nextLine();
-                //Todo need to call create customer here
-
-
-            }
-            else if (selection == 2){
-                System.out.println("Enter VIN");
-                String vin = scanner.nextLine();
-                System.out.println("Enter brand");
-                String brand = scanner.nextLine();
-                System.out.println("Enter model");
-                String model = scanner.nextLine();
-                System.out.println("Enter color");
-                String color = scanner.nextLine();
-                System.out.println("Enter engine");
-                String engine = scanner.nextLine();
-                System.out.println("Enter transmission");
-                String trans = scanner.nextLine();
-                System.out.println("Enter mpg");
-                Integer mpg = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter current dealership ID where vehicle is located or leave blank if already bought");
-                Integer dealerID = scanner.nextInt();
-                scanner.nextLine();
-
-                System.out.println("Enter date sold to dealer (YYYY-MM-DD)");
-                Integer date = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter manufacturer");
-                String manufact = scanner.nextLine();
-
-            }
-            else if (selection == 3){
-                System.out.println("Enter dealer name");
-                String name = scanner.nextLine();
-                System.out.println("Enter street address");
-                String street = scanner.nextLine();
-                System.out.println("Enter city");
-                String city = scanner.nextLine();
-                System.out.println("Enter State (ex: NY, PA)");
-                String state = scanner.nextLine();
-                System.out.println("Enter zip code");
-                Integer zip = scanner.nextInt();
-                scanner.nextLine();
-
-            }
-            else if (selection == 4){
-                System.out.println("Enter first name");
-                String fname = scanner.nextLine();
-                System.out.println("Enter last name");
-                String lname = scanner.nextLine();
-                System.out.println("Enter phone");
-                String phone = scanner.nextLine();
-                System.out.println("Enter email");
-                String email = scanner.nextLine();
-                System.out.println("Enter Id of assigned dealer");
-                Integer dealerId = scanner.nextInt();
-                scanner.nextLine();
-
-            }
-            else if (selection == 5){
-                System.out.println("Enter Id of assigned salesperson");
-                Integer salespersonId = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter Id of customer the vehicle was sold to");
-                Integer customerId = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter Id of dealer");
-                Integer dealerId = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter total sale price");
-                Integer total = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter date of sale");
-                Integer date = scanner.nextInt();
-                scanner.nextLine();
-
-
-
-            }
-            else if (selection == 6){
-                System.out.println("Enter Id of sale");
-                Integer saleId = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter vin");
-                String vin = scanner.nextLine();
-
-            }
-        }
-        else{
-            System.out.println("Sorry, we do not recognize your choice, please select a role from above");
+            System.out.println(""); // new line for formatting
         }
     }
 
